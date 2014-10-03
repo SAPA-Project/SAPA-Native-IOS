@@ -20,6 +20,7 @@
 		85E3C21219DCEBB600DFDB05 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E3C21119DCEBB600DFDB05 /* QuartzCore.framework */; };
 		85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21319DCF2DE00DFDB05 /* SlideRightSegue.swift */; };
 		85E3C21819DD41EC00DFDB05 /* SignUpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21719DD41EC00DFDB05 /* SignUpScreenViewController.swift */; };
+		85E3C21A19DDD72500DFDB05 /* InitialDemographicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21919DDD72500DFDB05 /* InitialDemographicsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		85E3C21119DCEBB600DFDB05 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		85E3C21319DCF2DE00DFDB05 /* SlideRightSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightSegue.swift; sourceTree = "<group>"; };
 		85E3C21719DD41EC00DFDB05 /* SignUpScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewController.swift; sourceTree = "<group>"; };
+		85E3C21919DDD72500DFDB05 /* InitialDemographicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialDemographicsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				85E3C1E919DC666200DFDB05 /* LoginMainViewController.swift */,
 				85E3C20919DC9EA000DFDB05 /* LoginScreenViewController.swift */,
 				85E3C21719DD41EC00DFDB05 /* SignUpScreenViewController.swift */,
+				85E3C21919DDD72500DFDB05 /* InitialDemographicsViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */,
+				85E3C21A19DDD72500DFDB05 /* InitialDemographicsViewController.swift in Sources */,
 				85E3C21819DD41EC00DFDB05 /* SignUpScreenViewController.swift in Sources */,
 				85E3C20E19DCEA7200DFDB05 /* SlideLeftSegue.swift in Sources */,
 				85E3C1EA19DC666200DFDB05 /* LoginMainViewController.swift in Sources */,
@@ -449,6 +453,7 @@
 				85E3C20319DC666200DFDB05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		85E3C20419DC666200DFDB05 /* Build configuration list for PBXNativeTarget "SAPA-NativeTests" */ = {
 			isa = XCConfigurationList;
@@ -457,6 +462,7 @@
 				85E3C20619DC666200DFDB05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

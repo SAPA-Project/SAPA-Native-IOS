@@ -24,11 +24,20 @@ class SignUpScreenViewController: UIViewController {
         
         initializeButtons()
         initializeTextFields()
+        
+        let didTapView : Selector = "didTapView"
+        let viewTapRecognizer = UITapGestureRecognizer(target: self, action: didTapView)
+        viewTapRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(viewTapRecognizer)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func didTapView() {
+        self.view.endEditing(true)
     }
     
     func initializeButtons() {
@@ -76,6 +85,11 @@ class SignUpScreenViewController: UIViewController {
     
     func textFieldDidEndEditing(textField: UITextField!) {
         textField.layer.borderColor = UIColor.lightGrayColor().CGColor
+    }
+    
+    @IBAction func showInitialDemographicsScreen() {
+        let initialDemographicsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("InitialDemographicsViewController") as InitialDemographicsViewController
+        self.navigationController?.pushViewController(initialDemographicsViewController, animated: true)
     }
     
     @IBAction func navigateBack() {

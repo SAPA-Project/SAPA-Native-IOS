@@ -23,11 +23,20 @@ class LoginScreenViewController: UIViewController {
         
         initializeButtons()
         initializeTextFields()
+        
+        let didTapView : Selector = "didTapView"
+        let viewTapRecognizer = UITapGestureRecognizer(target: self, action: didTapView)
+        viewTapRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(viewTapRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func didTapView() {
+        self.view.endEditing(true)
     }
     
     func initializeButtons() {
