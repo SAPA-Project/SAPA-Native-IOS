@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0fY-ma-nYK">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login Main View Controller-->
@@ -12,24 +13,30 @@
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SAPA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCm-h3-HXE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAPA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCm-h3-HXE">
                                 <rect key="frame" x="25" y="184" width="325" height="97"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                 <color key="textColor" red="0.25098039215686274" green="0.45098039215686275" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unlock your personality" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zW8-4o-8rq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock your personality" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zW8-4o-8rq">
                                 <rect key="frame" x="52" y="289" width="270" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" placeholder="YES" id="FEC-YK-iqb"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.45098039220000002" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTB-oK-OBk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTB-oK-OBk">
                                 <rect key="frame" x="73" y="346" width="228" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" placeholder="YES" id="i2p-hm-8yo"/>
+                                </constraints>
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" red="0.25098039220000001" green="0.45098039220000002" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -37,8 +44,11 @@
                                     <action selector="showSignInScreen" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GNh-71-Zgd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PC1-bw-IQY">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PC1-bw-IQY">
                                 <rect key="frame" x="73" y="417" width="228" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" placeholder="YES" id="L5C-Qx-7zN"/>
+                                </constraints>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.0" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -48,12 +58,30 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zW8-4o-8rq" firstAttribute="centerX" secondItem="TCm-h3-HXE" secondAttribute="centerX" placeholder="YES" id="09y-LN-cng"/>
+                            <constraint firstItem="zW8-4o-8rq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="36" placeholder="YES" id="0EA-Y6-I0d"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PC1-bw-IQY" secondAttribute="bottom" constant="200" placeholder="YES" id="A06-M2-KkT"/>
+                            <constraint firstItem="TCm-h3-HXE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="9" placeholder="YES" id="LcQ-yt-W6d"/>
+                            <constraint firstItem="oTB-oK-OBk" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="57" placeholder="YES" id="O5g-1W-8OJ"/>
+                            <constraint firstItem="PC1-bw-IQY" firstAttribute="top" secondItem="oTB-oK-OBk" secondAttribute="bottom" constant="21" placeholder="YES" id="T3q-gI-GXO"/>
+                            <constraint firstItem="oTB-oK-OBk" firstAttribute="trailing" secondItem="PC1-bw-IQY" secondAttribute="trailing" placeholder="YES" id="WdU-f0-OME"/>
+                            <constraint firstItem="oTB-oK-OBk" firstAttribute="centerX" secondItem="zW8-4o-8rq" secondAttribute="centerX" placeholder="YES" id="a3P-kf-PGG"/>
+                            <constraint firstItem="PC1-bw-IQY" firstAttribute="leading" secondItem="oTB-oK-OBk" secondAttribute="leading" placeholder="YES" id="a76-P0-MQh"/>
+                            <constraint firstItem="TCm-h3-HXE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="120" placeholder="YES" id="lkp-Jg-4mB"/>
+                            <constraint firstItem="oTB-oK-OBk" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" placeholder="YES" id="owo-hi-58k"/>
+                            <constraint firstItem="oTB-oK-OBk" firstAttribute="top" secondItem="zW8-4o-8rq" secondAttribute="bottom" constant="36" placeholder="YES" id="xMX-YX-GVC"/>
+                            <constraint firstItem="zW8-4o-8rq" firstAttribute="top" secondItem="TCm-h3-HXE" secondAttribute="bottom" constant="8" symbolic="YES" placeholder="YES" id="zp6-G0-cJ0"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1EC-Ma-XV0"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="signInButton" destination="oTB-oK-OBk" id="f9o-cy-6i2"/>
                         <outlet property="signUpButton" destination="PC1-bw-IQY" id="iX8-xM-xTQ"/>
+                        <outlet property="taglineLabel" destination="zW8-4o-8rq" id="g6F-iD-Z3M"/>
+                        <outlet property="titleLabel" destination="TCm-h3-HXE" id="Rhm-Mv-IfT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
