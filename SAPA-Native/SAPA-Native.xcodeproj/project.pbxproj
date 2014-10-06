@@ -10,7 +10,7 @@
 		85E3C1E519DC666200DFDB05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C1E419DC666200DFDB05 /* AppDelegate.swift */; };
 		85E3C1E819DC666200DFDB05 /* SAPA_Native.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C1E619DC666200DFDB05 /* SAPA_Native.xcdatamodeld */; };
 		85E3C1EA19DC666200DFDB05 /* LoginMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C1E919DC666200DFDB05 /* LoginMainViewController.swift */; };
-		85E3C1ED19DC666200DFDB05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E3C1EB19DC666200DFDB05 /* Main.storyboard */; };
+		85E3C1ED19DC666200DFDB05 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E3C1EB19DC666200DFDB05 /* Login.storyboard */; };
 		85E3C1EF19DC666200DFDB05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85E3C1EE19DC666200DFDB05 /* Images.xcassets */; };
 		85E3C1F219DC666200DFDB05 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E3C1F019DC666200DFDB05 /* LaunchScreen.xib */; };
 		85E3C1FE19DC666200DFDB05 /* SAPA_NativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C1FD19DC666200DFDB05 /* SAPA_NativeTests.swift */; };
@@ -21,6 +21,17 @@
 		85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21319DCF2DE00DFDB05 /* SlideRightSegue.swift */; };
 		85E3C21819DD41EC00DFDB05 /* SignUpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21719DD41EC00DFDB05 /* SignUpScreenViewController.swift */; };
 		85E3C21A19DDD72500DFDB05 /* InitialDemographicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21919DDD72500DFDB05 /* InitialDemographicsViewController.swift */; };
+		85F7660119E3318100009758 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F765FF19E3318100009758 /* Bolts.framework */; };
+		85F7660219E3318100009758 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660019E3318100009758 /* Parse.framework */; };
+		85F7660419E3324000009758 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660319E3324000009758 /* AudioToolbox.framework */; };
+		85F7660619E3324500009758 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660519E3324500009758 /* CFNetwork.framework */; };
+		85F7660819E3324B00009758 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660719E3324B00009758 /* CoreGraphics.framework */; };
+		85F7660A19E3325200009758 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660919E3325200009758 /* CoreLocation.framework */; };
+		85F7660C19E3325800009758 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660B19E3325800009758 /* libz.dylib */; };
+		85F7660E19E3325E00009758 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660D19E3325E00009758 /* MobileCoreServices.framework */; };
+		85F7661019E3326B00009758 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660F19E3326B00009758 /* Security.framework */; };
+		85F7661219E3327100009758 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7661119E3327100009758 /* StoreKit.framework */; };
+		85F7661419E3327900009758 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7661319E3327900009758 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +50,7 @@
 		85E3C1E419DC666200DFDB05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E3C1E719DC666200DFDB05 /* SAPA_Native.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SAPA_Native.xcdatamodel; sourceTree = "<group>"; };
 		85E3C1E919DC666200DFDB05 /* LoginMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainViewController.swift; sourceTree = "<group>"; };
-		85E3C1EC19DC666200DFDB05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		85E3C1EC19DC666200DFDB05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		85E3C1EE19DC666200DFDB05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		85E3C1F119DC666200DFDB05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		85E3C1F719DC666200DFDB05 /* SAPA-NativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SAPA-NativeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +63,18 @@
 		85E3C21319DCF2DE00DFDB05 /* SlideRightSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightSegue.swift; sourceTree = "<group>"; };
 		85E3C21719DD41EC00DFDB05 /* SignUpScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewController.swift; sourceTree = "<group>"; };
 		85E3C21919DDD72500DFDB05 /* InitialDemographicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialDemographicsViewController.swift; sourceTree = "<group>"; };
+		85F765FF19E3318100009758 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		85F7660019E3318100009758 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		85F7660319E3324000009758 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		85F7660519E3324500009758 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		85F7660719E3324B00009758 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		85F7660919E3325200009758 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		85F7660B19E3325800009758 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		85F7660D19E3325E00009758 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		85F7660F19E3326B00009758 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		85F7661119E3327100009758 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		85F7661319E3327900009758 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		85F7661519E332CC00009758 /* SAPA-Native-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAPA-Native-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +82,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85F7661419E3327900009758 /* SystemConfiguration.framework in Frameworks */,
+				85F7661219E3327100009758 /* StoreKit.framework in Frameworks */,
+				85F7661019E3326B00009758 /* Security.framework in Frameworks */,
 				85E3C21219DCEBB600DFDB05 /* QuartzCore.framework in Frameworks */,
+				85F7660E19E3325E00009758 /* MobileCoreServices.framework in Frameworks */,
+				85F7660C19E3325800009758 /* libz.dylib in Frameworks */,
+				85F7660A19E3325200009758 /* CoreLocation.framework in Frameworks */,
+				85F7660819E3324B00009758 /* CoreGraphics.framework in Frameworks */,
+				85F7660619E3324500009758 /* CFNetwork.framework in Frameworks */,
+				85F7660419E3324000009758 /* AudioToolbox.framework in Frameworks */,
+				85F7660219E3318100009758 /* Parse.framework in Frameworks */,
+				85F7660119E3318100009758 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,10 +110,22 @@
 		85E3C1D619DC666200DFDB05 = {
 			isa = PBXGroup;
 			children = (
+				85F7661319E3327900009758 /* SystemConfiguration.framework */,
+				85F7661119E3327100009758 /* StoreKit.framework */,
+				85F7660F19E3326B00009758 /* Security.framework */,
+				85F7660D19E3325E00009758 /* MobileCoreServices.framework */,
+				85F7660B19E3325800009758 /* libz.dylib */,
+				85F7660919E3325200009758 /* CoreLocation.framework */,
+				85F7660719E3324B00009758 /* CoreGraphics.framework */,
+				85F7660519E3324500009758 /* CFNetwork.framework */,
+				85F7660319E3324000009758 /* AudioToolbox.framework */,
+				85F765FF19E3318100009758 /* Bolts.framework */,
+				85F7660019E3318100009758 /* Parse.framework */,
 				85E3C21119DCEBB600DFDB05 /* QuartzCore.framework */,
 				85E3C1E119DC666200DFDB05 /* SAPA-Native */,
 				85E3C1FA19DC666200DFDB05 /* SAPA-NativeTests */,
 				85E3C1E019DC666200DFDB05 /* Products */,
+				85F7661519E332CC00009758 /* SAPA-Native-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				85E3C1E419DC666200DFDB05 /* AppDelegate.swift */,
-				85E3C1EB19DC666200DFDB05 /* Main.storyboard */,
 				85E3C1EE19DC666200DFDB05 /* Images.xcassets */,
 				85E3C1F019DC666200DFDB05 /* LaunchScreen.xib */,
 				85E3C1E619DC666200DFDB05 /* SAPA_Native.xcdatamodeld */,
@@ -136,6 +181,7 @@
 		85E3C20F19DCEA9400DFDB05 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				85E3C1EB19DC666200DFDB05 /* Login.storyboard */,
 				85E3C1E919DC666200DFDB05 /* LoginMainViewController.swift */,
 				85E3C20919DC9EA000DFDB05 /* LoginScreenViewController.swift */,
 				85E3C21719DD41EC00DFDB05 /* SignUpScreenViewController.swift */,
@@ -234,7 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E3C20C19DCE30500DFDB05 /* arrow-left.png in Resources */,
-				85E3C1ED19DC666200DFDB05 /* Main.storyboard in Resources */,
+				85E3C1ED19DC666200DFDB05 /* Login.storyboard in Resources */,
 				85E3C1F219DC666200DFDB05 /* LaunchScreen.xib in Resources */,
 				85E3C1EF19DC666200DFDB05 /* Images.xcassets in Resources */,
 			);
@@ -284,12 +330,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		85E3C1EB19DC666200DFDB05 /* Main.storyboard */ = {
+		85E3C1EB19DC666200DFDB05 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				85E3C1EC19DC666200DFDB05 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		85E3C1F019DC666200DFDB05 /* LaunchScreen.xib */ = {
@@ -384,9 +430,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -394,9 +447,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 			};
 			name = Release;
 		};
