@@ -10,6 +10,8 @@ import UIKit
 
 class SignUpScreenViewController: UIViewController {
 
+    var userSettings: PFObject!
+
     var originalCenter: CGPoint!
     
     var viewWidth: Double!
@@ -24,6 +26,9 @@ class SignUpScreenViewController: UIViewController {
     @IBOutlet var confirmPasswordTextField: UITextField!
     
     @IBOutlet var backButton: UIButton!
+
+    var loadMask: UIView!
+    var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +52,14 @@ class SignUpScreenViewController: UIViewController {
         initializeLabels()
         initializeButtons()
         initializeTextFields()
+        initializeActivityIndicator()
         
         //Hide keyboard on tap
         let didTapView : Selector = "didTapView"
         let viewTapRecognizer = UITapGestureRecognizer(target: self, action: didTapView)
         viewTapRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(viewTapRecognizer)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -140,6 +147,21 @@ class SignUpScreenViewController: UIViewController {
         confirmPasswordTextField.addTarget(self, action: "checkIfFieldsEntered", forControlEvents: .EditingChanged)
         
     }
+
+    func initializeActivityIndicator() {
+        loadMask = UIView(frame: CGRectMake(0,0,CGFloat(viewWidth),CGFloat(viewHeight))) as UIView
+        loadMask.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha: 0.5)
+        loadMask.center = view.center
+        loadMask.hidden = true
+        view.addSubview(loadMask)
+
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0, 150, 150)) as UIActivityIndicatorView
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.color = UIColor(red: 0.0/255.0, green: 153.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        view.addSubview(activityIndicator)
+    }
     
     func textFieldDidBeginEditing(textField: UITextField!) {
         
@@ -218,10 +240,61 @@ class SignUpScreenViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
 
+        else {
+            
+            loadMask.hidden = false
+            activityIndicator.startAnimating()
+
+            var email = emailTextField.text
+            var password = passwordTextField.text
+
+            var user = PFUser()
+            user.username = email
+            user.email = email
+            user.password = password
+
+            user.signUpInBackgroundWithBlock {
+                
+                (succeeded: Bool!, error: NSError!) -> Void in
+                
+                if error == nil {
+
+                    self.loadMask.hidden = true
+                    self.activityIndicator.stopAnimating()
+
+                    self.userSettings = PFObject(className: "UserSettings")
+                    self.userSettings["email"] = email
+                    self.userSettings.saveInBackground()
+
+                    // var userDefaults = NSUserDefaults.standardUserDefaults()
+                    // userDefaults.setObject(email, forKey: USERDEFAULTSEMAIL)
+                    // userDefaults.synchronize()
+
+                    self.showInitialDemographicsScreen()
+                    
+                } 
+
+                else {
+
+                    self.loadMask.hidden = true
+                    self.activityIndicator.stopAnimating()
+                    
+                    let errorString = error.userInfo!["error"] as NSString
+                    var alert = UIAlertController(title: "Error", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+
+                }
+
+            }
+
+        }
+
     }
     
     func showInitialDemographicsScreen() {
         let initialDemographicsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("InitialDemographicsViewController") as InitialDemographicsViewController
+        initialDemographicsViewController.userSettings = userSettings
         self.navigationController?.pushViewController(initialDemographicsViewController, animated: true)
     }
     

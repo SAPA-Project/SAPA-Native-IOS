@@ -30,8 +30,14 @@ class LoginMainViewController: UIViewController {
         
         self.navigationController?.navigationBar.hidden = true
         
+        //Initialize elements
         initializeLabels()
         initializeButtons()
+
+        // var userDefaults = NSUserDefaults.standardUserDefaults()
+        // let currentUser = userDefaults.objectForKey("userSettings") as PFObject
+        // let userEmail = currentUser["email"] as String
+        // NSLog("%@",userEmail)
     }
 
     override func didReceiveMemoryWarning() {

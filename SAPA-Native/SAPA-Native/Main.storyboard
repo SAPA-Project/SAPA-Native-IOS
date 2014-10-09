@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="94j-x4-e3S">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Menu View Controller-->
+        <scene sceneID="oJu-7C-9yH">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NwY-qz-EZz" customClass="MenuViewController" customModule="SAPA_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t14-8A-U5E"/>
+                        <viewControllerLayoutGuide type="bottom" id="aIm-5U-m9f"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CaU-Dy-cKu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDq-Zn-76f">
+                                <rect key="frame" x="50" y="274" width="221" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" placeholder="YES" id="YKF-FC-gcq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="           Profile">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fm-uG-jq8">
+                                <rect key="frame" x="50" y="332" width="221" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" placeholder="YES" id="KY2-2O-JTn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="           Stats">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZoU-GJ-7Gb">
+                                <rect key="frame" x="50" y="390" width="221" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" placeholder="YES" id="Lqp-Oj-yFe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="           Settings">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="add-photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="c10-3q-V6J">
+                                <rect key="frame" x="100" y="50" width="120" height="115"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijC-g3-Qvk">
+                                <rect key="frame" x="16" y="203" width="288" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" placeholder="YES" id="jEn-ty-8Z7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3fm-uG-jq8" firstAttribute="top" secondItem="nDq-Zn-76f" secondAttribute="bottom" constant="8" symbolic="YES" placeholder="YES" id="3AY-uk-IaF"/>
+                            <constraint firstItem="ijC-g3-Qvk" firstAttribute="top" secondItem="c10-3q-V6J" secondAttribute="bottom" constant="38" placeholder="YES" id="7Qa-jY-Fjc"/>
+                            <constraint firstItem="nDq-Zn-76f" firstAttribute="trailing" secondItem="3fm-uG-jq8" secondAttribute="trailing" placeholder="YES" id="7r2-Tp-DrI"/>
+                            <constraint firstItem="ijC-g3-Qvk" firstAttribute="trailing" secondItem="CaU-Dy-cKu" secondAttribute="trailingMargin" placeholder="YES" id="8VN-L1-PqR"/>
+                            <constraint firstItem="ZoU-GJ-7Gb" firstAttribute="leading" secondItem="3fm-uG-jq8" secondAttribute="leading" placeholder="YES" id="Dxn-t9-W85"/>
+                            <constraint firstItem="c10-3q-V6J" firstAttribute="leading" secondItem="CaU-Dy-cKu" secondAttribute="leadingMargin" constant="84" placeholder="YES" id="OUT-P6-W1u"/>
+                            <constraint firstItem="ZoU-GJ-7Gb" firstAttribute="trailing" secondItem="3fm-uG-jq8" secondAttribute="trailing" placeholder="YES" id="OYA-Zs-cf4"/>
+                            <constraint firstItem="nDq-Zn-76f" firstAttribute="leading" secondItem="CaU-Dy-cKu" secondAttribute="leadingMargin" constant="34" placeholder="YES" id="PBl-Gk-Myg"/>
+                            <constraint firstItem="nDq-Zn-76f" firstAttribute="top" secondItem="ijC-g3-Qvk" secondAttribute="bottom" constant="45" placeholder="YES" id="PUV-dU-sjF"/>
+                            <constraint firstItem="3fm-uG-jq8" firstAttribute="leading" secondItem="nDq-Zn-76f" secondAttribute="leading" placeholder="YES" id="TbA-zT-cvr"/>
+                            <constraint firstItem="aIm-5U-m9f" firstAttribute="top" secondItem="ZoU-GJ-7Gb" secondAttribute="bottom" constant="128" placeholder="YES" id="V5x-E0-KHX"/>
+                            <constraint firstItem="ijC-g3-Qvk" firstAttribute="centerX" secondItem="nDq-Zn-76f" secondAttribute="centerX" placeholder="YES" id="Ycm-fx-zb5"/>
+                            <constraint firstItem="ijC-g3-Qvk" firstAttribute="leading" secondItem="CaU-Dy-cKu" secondAttribute="leadingMargin" placeholder="YES" id="Zew-FH-K15"/>
+                            <constraint firstItem="c10-3q-V6J" firstAttribute="top" secondItem="t14-8A-U5E" secondAttribute="bottom" constant="30" placeholder="YES" id="b1H-zc-pLg"/>
+                            <constraint firstItem="ijC-g3-Qvk" firstAttribute="centerX" secondItem="c10-3q-V6J" secondAttribute="centerX" placeholder="YES" id="dI9-QB-Wy4"/>
+                            <constraint firstItem="ZoU-GJ-7Gb" firstAttribute="top" secondItem="3fm-uG-jq8" secondAttribute="bottom" constant="8" symbolic="YES" placeholder="YES" id="gaP-L6-RnH"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Teg-RK-K3r"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="ijC-g3-Qvk" id="o1t-5R-yVR"/>
+                        <outlet property="profileButton" destination="nDq-Zn-76f" id="XiC-Z0-bAQ"/>
+                        <outlet property="profilePicture" destination="c10-3q-V6J" id="QRT-Or-MFs"/>
+                        <outlet property="settingsButton" destination="ZoU-GJ-7Gb" id="3Er-8n-rqx"/>
+                        <outlet property="statsButton" destination="3fm-uG-jq8" id="VXs-sF-AcM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hmz-6m-Asq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="982" y="-220"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ui7-fz-fX8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="94j-x4-e3S" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="P1E-Lt-Wrp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NwY-qz-EZz" kind="relationship" relationship="rootViewController" id="qok-xP-H82"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VEh-Jr-2kv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="493.5" y="-219.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="add-photo.png" width="350" height="350"/>
+    </resources>
+</document>

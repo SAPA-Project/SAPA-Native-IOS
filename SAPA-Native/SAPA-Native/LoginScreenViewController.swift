@@ -9,6 +9,8 @@
 import UIKit
 
 class LoginScreenViewController: UIViewController {
+
+    var userSettings: PFObject!
     
     var originalCenter: CGPoint!
     
@@ -24,6 +26,9 @@ class LoginScreenViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     
     @IBOutlet var backButton: UIButton!
+
+    var loadMask: UIView!
+    var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +46,7 @@ class LoginScreenViewController: UIViewController {
         initializeButtons()
         initializeTextFields()
         initializeLabels()
+        initializeActivityIndicator()
         
         //Set keyboard height
         keyboardPushedNewCenter = CGFloat(viewHeight*0.24647887323)
@@ -129,6 +135,21 @@ class LoginScreenViewController: UIViewController {
         passwordTextField.addTarget(self, action: "checkIfFieldsEntered", forControlEvents: .EditingChanged)
         
     }
+
+    func initializeActivityIndicator() {
+        loadMask = UIView(frame: CGRectMake(0,0,CGFloat(viewWidth),CGFloat(viewHeight))) as UIView
+        loadMask.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha: 0.5)
+        loadMask.center = view.center
+        loadMask.hidden = true
+        view.addSubview(loadMask)
+
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0, 150, 150)) as UIActivityIndicatorView
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.color = UIColor(red: 0.0/255.0, green: 153.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        view.addSubview(activityIndicator)
+    }
     
     func textFieldDidBeginEditing(textField: UITextField!) {
         
@@ -190,13 +211,103 @@ class LoginScreenViewController: UIViewController {
         signInButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         signInButton.enabled = false
     }
+
+    @IBAction func didTapSignIn() {
+        self.view.endEditing(true)
+        logInUser()
+    }
     
     func logInUser() {
         
+        loadMask.hidden = false
+        activityIndicator.startAnimating()
+
+        var email = emailTextField.text
+        var password = passwordTextField.text
+
+        PFUser.logInWithUsernameInBackground(email, password: password) {
+            
+            (user: PFUser!, error: NSError!) -> Void in
+            
+            if user != nil {
+
+                var query = PFQuery(className: "UserSettings")
+                query.whereKey("email", equalTo: email)
+                query.findObjectsInBackgroundWithBlock {
+
+                    (users: [AnyObject]!, error: NSError!) -> Void in
+
+                    if error == nil {
+
+                        self.loadMask.hidden = true
+                        self.activityIndicator.stopAnimating()
+
+                        self.userSettings = users[0] as PFObject
+
+                        if self.userSettings["gender"] == nil {
+                            // var userDefaults = NSUserDefaults.standardUserDefaults()
+                            // userDefaults.setObject(email, forKey: USERDEFAULTSEMAIL)
+                            // userDefaults.synchronize()
+                            self.showInitialDemographicsScreen()
+                        }
+
+                        else {
+                            //Go to main screen
+                            self.showMenuView()
+                        }
+
+                    }
+
+                    else {
+                        self.loadMask.hidden = true
+                        self.activityIndicator.stopAnimating()
+                        let errorString = error.userInfo!["error"] as NSString
+                    }
+
+                }
+                
+            } 
+
+            else {
+
+                self.loadMask.hidden = true
+                self.activityIndicator.stopAnimating()
+
+                let errorString = error.userInfo!["error"] as NSString
+                var alert = UIAlertController(title: "Error", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+
+            }
+        }
+
+    }
+
+    func showInitialDemographicsScreen() {
+        let initialDemographicsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("InitialDemographicsViewController") as InitialDemographicsViewController
+        initialDemographicsViewController.userSettings = userSettings
+        self.navigationController?.pushViewController(initialDemographicsViewController, animated: true)
+    }
+
+    func showMenuView() {    
+        //Prepare new view controller
+        var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var newNavigationController = mainStoryboard.instantiateInitialViewController() as UINavigationController
+        newNavigationController.modalTransitionStyle = .FlipHorizontal
+        var rootViewController = newNavigationController.viewControllers[0] as MenuViewController
+        rootViewController.userSettings = userSettings
+        self.presentViewController(newNavigationController, animated: true, completion: nil)
+           
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     @IBAction func navigateBack() {
         self.navigationController?.popViewControllerAnimated(true)
     }
+
+    // override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    //     // Get the new view controller using segue.destinationViewController.
+    //     // Pass the selected object to the new view controller.
+    // }
 
 }

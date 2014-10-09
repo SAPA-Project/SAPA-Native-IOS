@@ -9,6 +9,8 @@
 import UIKit
 
 class InitialDemographicsViewController: UIViewController {
+
+    var userSettings: PFObject!
     
     var viewWidth: Double!
     var viewHeight: Double!
@@ -24,6 +26,9 @@ class InitialDemographicsViewController: UIViewController {
     
     @IBOutlet var facebookSwitch: UISwitch!
     @IBOutlet var twitterSwitch: UISwitch!
+
+    var loadMask: UIView!
+    var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +47,7 @@ class InitialDemographicsViewController: UIViewController {
         initializeSwitches()
         initializeButtons()
         initializeTextFields()
+        initializeActivityIndicator()
         
         //Hide keyboard on tap
         let didTapView : Selector = "didTapView"
@@ -96,20 +102,27 @@ class InitialDemographicsViewController: UIViewController {
     }
     
     func initializeButtons() {
+
+        let enabledColor = UIColor(red: 64.0/255.0, green: 115.0/255.0, blue: 180.0/255.0, alpha: 1.0)
+        let disabledColor = UIColor.lightGrayColor()
         
         let getStartedButtonTopConstant = CGFloat(0.60719640179*viewHeight)
         let buttonHeightMultiplier = CGFloat(0.07496251874)
         let buttonWidthMultiplier = CGFloat(0.608)
         
         getStartedButton.layer.borderWidth = 1.0
-        getStartedButton.layer.borderColor = UIColor(red: 64.0/255.0, green: 115.0/255.0, blue: 180.0/255.0, alpha: 1.0).CGColor
+        getStartedButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        getStartedButton.setTitleColor(disabledColor, forState: .Disabled)
+        getStartedButton.setTitleColor(enabledColor, forState: .Normal)
         getStartedButton.layer.cornerRadius = 5
         let getStartedButtonCenterXConstraint = NSLayoutConstraint(item: getStartedButton, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
         let getStartedButtonTopConstraint = NSLayoutConstraint(item: getStartedButton, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: getStartedButtonTopConstant)
         let getStartedButtonHeightConstraint = NSLayoutConstraint(item: getStartedButton, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: buttonHeightMultiplier, constant: 0)
         let getStartedButtonWidthConstraint = NSLayoutConstraint(item: getStartedButton, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: buttonWidthMultiplier, constant: 0)
         view.addConstraints([getStartedButtonCenterXConstraint, getStartedButtonTopConstraint, getStartedButtonHeightConstraint, getStartedButtonWidthConstraint])
-        
+        getStartedButton.enabled = false
+
+
         let genderButtonTopConstant = CGFloat(0.22038980509*viewHeight)
         let genderButtonCenterXConstraint = NSLayoutConstraint(item: genderButton, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
         let genderButtonTopConstraint = NSLayoutConstraint(item: genderButton, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: genderButtonTopConstant)
@@ -132,7 +145,7 @@ class InitialDemographicsViewController: UIViewController {
         let ageTextFieldHeightConstraint = NSLayoutConstraint(item: ageTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
         let ageTextFieldWidthConstraint = NSLayoutConstraint(item: ageTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
         view.addConstraints([ageTextFieldCenterXConstraint, ageTextFieldTopConstraint, ageTextFieldHeightConstraint, ageTextFieldWidthConstraint])
-        
+        ageTextField.addTarget(self, action: "checkIfFieldsEntered", forControlEvents: .EditingChanged)
         
     }
     
@@ -163,6 +176,21 @@ class InitialDemographicsViewController: UIViewController {
         view.addConstraints([twitterSwitchLeadingConstraint, twitterSwitchTopConstraint, twitterSwitchHeightConstraint, twitterSwitchWidthConstraint])
         
     }
+
+    func initializeActivityIndicator() {
+        loadMask = UIView(frame: CGRectMake(0,0,CGFloat(viewWidth),CGFloat(viewHeight))) as UIView
+        loadMask.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha: 0.5)
+        loadMask.center = view.center
+        loadMask.hidden = true
+        view.addSubview(loadMask)
+
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0, 150, 150)) as UIActivityIndicatorView
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.color = UIColor(red: 0.0/255.0, green: 153.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        view.addSubview(activityIndicator)
+    }
     
     func textFieldDidBeginEditing(textField: UITextField!) {
         
@@ -181,6 +209,67 @@ class InitialDemographicsViewController: UIViewController {
     func textFieldDidEndEditing(textField: UITextField!) {
         textField.layer.borderColor = UIColor.lightGrayColor().CGColor
         
+    }
+
+    func checkIfFieldsEntered() {
+        if ageTextField.text != "" {
+            enableGetStartedButton()
+        }
+        else {
+            disableGetStartedButton()
+        }
+    }
+
+    func enableGetStartedButton() {
+        getStartedButton.layer.borderColor = UIColor(red: 64.0/255.0, green: 115.0/255.0, blue: 180.0/255.0, alpha: 1.0).CGColor
+        getStartedButton.enabled = true
+    }
+
+    func disableGetStartedButton() {
+        getStartedButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        getStartedButton.enabled = false
+    }
+
+    @IBAction func didTapGetStarted() {
+
+        self.view.endEditing(true)
+
+        loadMask.hidden = false
+        activityIndicator.startAnimating()
+
+        var age = ageTextField.text.toInt()
+        var gender = genderButton.titleForSegmentAtIndex(genderButton.selectedSegmentIndex)
+
+        userSettings["age"] = age
+        userSettings["gender"] = gender
+        userSettings.saveInBackgroundWithBlock {
+            (success: Bool!, error: NSError!) -> Void in
+            if success != nil {
+                self.loadMask.hidden = true
+                self.activityIndicator.stopAnimating()
+                self.showMenuView()
+            }
+            else {
+                self.loadMask.hidden = true
+                self.activityIndicator.stopAnimating()
+                NSLog("%@", error)
+            }
+        }
+
+        showMenuView()
+
+    }
+
+    func showMenuView() {    
+        //Prepare new view controller
+        var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var newNavigationController = mainStoryboard.instantiateInitialViewController() as UINavigationController
+        newNavigationController.modalTransitionStyle = .FlipHorizontal
+        var rootViewController = newNavigationController.viewControllers[0] as MenuViewController
+        rootViewController.userSettings = userSettings
+        self.presentViewController(newNavigationController, animated: true, completion: nil)
+           
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
 //    func initializePicker() {

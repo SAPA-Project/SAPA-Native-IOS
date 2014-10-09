@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850A05DD19E5B688003CEBBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 850A05DC19E5B688003CEBBF /* Main.storyboard */; };
+		850A05DF19E5B77C003CEBBF /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 850A05DE19E5B77C003CEBBF /* plus.png */; };
+		850A05E119E5BC22003CEBBF /* add-photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 850A05E019E5BC22003CEBBF /* add-photo.png */; };
+		850A05E319E5BC7E003CEBBF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A05E219E5BC7E003CEBBF /* MenuViewController.swift */; };
+		8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8583856A19E5D5F70016E064 /* UserSettingsModel.swift */; };
+		85A6B43519E471130077E603 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B43419E471130077E603 /* Constants.swift */; };
 		85E3C1E519DC666200DFDB05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C1E419DC666200DFDB05 /* AppDelegate.swift */; };
 		85E3C1E819DC666200DFDB05 /* SAPA_Native.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C1E619DC666200DFDB05 /* SAPA_Native.xcdatamodeld */; };
 		85E3C1EA19DC666200DFDB05 /* LoginMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C1E919DC666200DFDB05 /* LoginMainViewController.swift */; };
@@ -45,6 +51,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		850A05DC19E5B688003CEBBF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		850A05DE19E5B77C003CEBBF /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		850A05E019E5BC22003CEBBF /* add-photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-photo.png"; sourceTree = "<group>"; };
+		850A05E219E5BC7E003CEBBF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		8583856A19E5D5F70016E064 /* UserSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
+		85A6B43419E471130077E603 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		85E3C1DF19DC666200DFDB05 /* SAPA-Native.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SAPA-Native.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E3C1E319DC666200DFDB05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85E3C1E419DC666200DFDB05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8583856919E5D5D20016E064 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8583856A19E5D5F70016E064 /* UserSettingsModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		85E3C1D619DC666200DFDB05 = {
 			isa = PBXGroup;
 			children = (
@@ -145,9 +165,13 @@
 				85E3C1EE19DC666200DFDB05 /* Images.xcassets */,
 				85E3C1F019DC666200DFDB05 /* LaunchScreen.xib */,
 				85E3C1E619DC666200DFDB05 /* SAPA_Native.xcdatamodeld */,
+				850A05E219E5BC7E003CEBBF /* MenuViewController.swift */,
+				850A05DC19E5B688003CEBBF /* Main.storyboard */,
+				8583856919E5D5D20016E064 /* Model */,
 				85E3C20F19DCEA9400DFDB05 /* Login */,
 				85E3C21019DCEAB600DFDB05 /* Segues */,
 				85E3C1E219DC666200DFDB05 /* Supporting Files */,
+				85A6B43419E471130077E603 /* Constants.swift */,
 			);
 			path = "SAPA-Native";
 			sourceTree = "<group>";
@@ -155,7 +179,9 @@
 		85E3C1E219DC666200DFDB05 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				850A05E019E5BC22003CEBBF /* add-photo.png */,
 				85E3C20B19DCE30500DFDB05 /* arrow-left.png */,
+				850A05DE19E5B77C003CEBBF /* plus.png */,
 				85E3C1E319DC666200DFDB05 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -280,8 +306,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E3C20C19DCE30500DFDB05 /* arrow-left.png in Resources */,
+				850A05DF19E5B77C003CEBBF /* plus.png in Resources */,
+				850A05DD19E5B688003CEBBF /* Main.storyboard in Resources */,
 				85E3C1ED19DC666200DFDB05 /* Login.storyboard in Resources */,
 				85E3C1F219DC666200DFDB05 /* LaunchScreen.xib in Resources */,
+				850A05E119E5BC22003CEBBF /* add-photo.png in Resources */,
 				85E3C1EF19DC666200DFDB05 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +330,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */,
+				850A05E319E5BC7E003CEBBF /* MenuViewController.swift in Sources */,
+				8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */,
 				85E3C21A19DDD72500DFDB05 /* InitialDemographicsViewController.swift in Sources */,
 				85E3C21819DD41EC00DFDB05 /* SignUpScreenViewController.swift in Sources */,
 				85E3C20E19DCEA7200DFDB05 /* SlideLeftSegue.swift in Sources */,
@@ -308,6 +339,7 @@
 				85E3C1E519DC666200DFDB05 /* AppDelegate.swift in Sources */,
 				85E3C20A19DC9EA000DFDB05 /* LoginScreenViewController.swift in Sources */,
 				85E3C1E819DC666200DFDB05 /* SAPA_Native.xcdatamodeld in Sources */,
+				85A6B43519E471130077E603 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

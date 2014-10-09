@@ -17,12 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        Parse.setApplicationId("8WtfuZE2iww0adKIOU3x3DJH3LZK13zN6cAMQrtY", clientKey: "MzY50mxqRjmqm5uWm0eBOnTshAi9NumMZ7EU31mL")
 
-        var gameScore = PFObject(className: "GameScore")
-        gameScore.setObject(1337, forKey: "score")
-        gameScore.setObject("Sean Plott", forKey: "playerName")
-        gameScore.saveInBackground()
+        //Initialize Parse
+        Parse.setApplicationId("8WtfuZE2iww0adKIOU3x3DJH3LZK13zN6cAMQrtY", clientKey: "MzY50mxqRjmqm5uWm0eBOnTshAi9NumMZ7EU31mL")
 
         return true
     }

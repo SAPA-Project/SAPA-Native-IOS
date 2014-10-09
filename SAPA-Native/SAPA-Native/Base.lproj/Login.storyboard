@@ -136,6 +136,9 @@
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" red="0.25098039220000001" green="0.45098039220000002" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapSignIn" destination="fvs-oy-us9" eventType="touchUpInside" id="90c-KL-NI3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1G-WI-qyF">
                                 <rect key="frame" x="6" y="44" width="35" height="35"/>
@@ -246,7 +249,6 @@
                                 </state>
                                 <connections>
                                     <action selector="navigateBack" destination="Rgj-Vm-VQG" eventType="touchUpInside" id="JcJ-NG-Oje"/>
-                                    <action selector="navigateBack" destination="fvs-oy-us9" eventType="touchUpInside" id="s0f-UB-hM4"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T0F-OV-keb">
@@ -345,6 +347,9 @@
                                 <state key="normal" title="Get Started!">
                                     <color key="titleColor" red="0.25098039220000001" green="0.45098039220000002" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapGetStarted" destination="IGk-Ix-zkQ" eventType="touchUpInside" id="QIc-kJ-k4G"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqg-L3-2Rc">
                                 <rect key="frame" x="118" y="276" width="98" height="21"/>
