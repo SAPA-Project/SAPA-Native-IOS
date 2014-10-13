@@ -112,7 +112,7 @@ class MenuViewController: UIViewController {
 
     func initializeLabels() {
         let emailLabelTopConstant = CGFloat(0.36619718309*viewHeight)
-        let emailLabelHeightMultiplier = CGFloat(0.03697183098)
+        let emailLabelHeightMultiplier = CGFloat(0.04697183098)
         let emailLabelWidthMultiplier = CGFloat(0.9)
         
         let emailLabelCenterXConstraint = NSLayoutConstraint(item: emailLabel, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
@@ -134,5 +134,17 @@ class MenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    @IBAction func showProfileView() {
+        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
+        profileViewController.userSettings = userSettings
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+
+    @IBAction func showSettingsView() {
+        let settingsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as SettingsViewController
+        settingsViewController.userSettings = userSettings
+        self.navigationController?.pushViewController(settingsViewController, animated: true)
+    }
 
 }
