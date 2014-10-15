@@ -12,6 +12,10 @@ class SettingsViewController: UIViewController {
 
     var userSettings: PFObject!
 
+    var originalCenter: CGPoint!
+
+    var keyboardPushedNewCenter: CGFloat!
+
     var viewWidth: Double!
     var viewHeight: Double!
 
@@ -38,6 +42,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet var frequencyTextField: UITextField!
     @IBOutlet var questionsTextField: UITextField!
 
+    var currentTextField: String!
+
+    var currentStartTime: NSDate!
+    var currentEndTime: NSDate!
+
+    var datePicker: UIDatePicker!
+
     @IBOutlet var logOutButton: UIButton!
 
     override func viewDidLoad() {
@@ -51,6 +62,12 @@ class SettingsViewController: UIViewController {
         let screenHeight = Double(screenRect.size.height)
         viewWidth = screenWidth
         viewHeight = screenHeight
+
+        //Set keyboard height
+        keyboardPushedNewCenter = CGFloat(0.35478873239*viewHeight)
+        
+        //Set screen center
+        originalCenter = view.center
 
         //Initialize elements
         initializeTitlebar()
@@ -214,6 +231,7 @@ class SettingsViewController: UIViewController {
         let questionsLabelWidthConstraint = NSLayoutConstraint(item: questionsLabel, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: cellLabelWidthMultiplier, constant: 0)
         view.addConstraints([questionsLabelLeadingConstraint, questionsLabelCenterYConstraint, questionsLabelWidthConstraint])
 
+        emailLabel.text = userSettings["email"] as String
     }
 
     func initializeTextFields() {
@@ -245,6 +263,34 @@ class SettingsViewController: UIViewController {
         let questionsTextFieldWidthConstraint = NSLayoutConstraint(item: questionsTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: cellTextFieldWidthMultiplier, constant: 0)
         view.addConstraints([questionsTextFieldLeadingConstraint, questionsTextFieldCenterYConstraint, questionsTextFieldWidthConstraint])
 
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+
+        let startTime = userSettings["notificationStartTime"] as NSDate
+        let endTime = userSettings["notificationEndTime"] as NSDate
+
+        startTimeTextField.text = dateFormatter.stringFromDate(startTime)
+        currentStartTime = startTime
+        endTimeTextField.text = dateFormatter.stringFromDate(endTime)
+        currentEndTime = endTime
+
+        let notificationFrequency = userSettings["notificationFrequency"] as Int
+        let freq = String(notificationFrequency)
+        frequencyTextField.text = freq
+
+        let notificationQuestions = userSettings["questionsPerNotification"] as Int
+        let questions = String(notificationQuestions)
+        questionsTextField.text = questions
+
+        //Attach datepicker to sobrietyTextField
+        datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePickerMode.Time
+        datePicker.backgroundColor = UIColor.whiteColor()
+        datePicker.addTarget(self, action: "updateDate", forControlEvents: .ValueChanged)
+
+        startTimeTextField.inputView = datePicker
+        endTimeTextField.inputView = datePicker
+
     }
 
     func initializeButtons() {
@@ -260,6 +306,74 @@ class SettingsViewController: UIViewController {
         let logOutButtonHeightConstraint = NSLayoutConstraint(item: logOutButton, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: buttonHeightMultiplier, constant: 0)
         let logOutButtonWidthConstraint = NSLayoutConstraint(item: logOutButton, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: buttonWidthMultiplier, constant: 0)
         view.addConstraints([logOutButtonCenterXConstraint, logOutButtonTopConstraint, logOutButtonHeightConstraint, logOutButtonWidthConstraint])
+    }
+
+    func updateDate() {
+
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+
+        if currentTextField == "StartTime" {
+            startTimeTextField.text = dateFormatter.stringFromDate(datePicker.date)
+            currentStartTime = datePicker.date
+        }
+        else if currentTextField == "EndTime" {
+            endTimeTextField.text = dateFormatter.stringFromDate(datePicker.date)
+            currentEndTime = datePicker.date
+        }
+
+    }
+
+    func textFieldDidBeginEditing(textField: UITextField!) {
+        
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.25)
+        view.center = CGPointMake(self.originalCenter.x, keyboardPushedNewCenter);
+        UIView.commitAnimations()
+
+        if textField == startTimeTextField {
+            currentTextField = "StartTime"
+            datePicker.date = userSettings["notificationStartTime"] as NSDate
+        }
+        else if textField == endTimeTextField {
+            currentTextField = "EndTime"
+            datePicker.date = userSettings["notificationEndTime"] as NSDate
+        }
+
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField!) {
+        
+        
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.25)
+        view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y);
+        UIView.commitAnimations()
+
+        if textField == startTimeTextField {
+            userSettings["notificationStartTime"] = currentStartTime
+        }
+        else if textField == endTimeTextField {
+            userSettings["notificationEndTime"] = currentEndTime
+        }
+        else if textField == frequencyTextField {
+            userSettings["notificationFrequency"] = frequencyTextField.text.toInt()
+        }
+        else if textField == questionsTextField {
+            if questionsTextField.text.toInt() >= 10 {
+                userSettings["questionsPerNotification"] = questionsTextField.text.toInt()
+            }
+        }
+
+        if questionsTextField.text.toInt() < 10 {
+            var alert = UIAlertController(title: "Error", message: "You must have a minimum of 10 questions per notification", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
+            userSettings.saveInBackground()
+        }
+
     }
 
     /*

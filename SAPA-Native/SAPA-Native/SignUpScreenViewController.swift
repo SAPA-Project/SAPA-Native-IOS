@@ -264,6 +264,10 @@ class SignUpScreenViewController: UIViewController {
 
                     self.userSettings = PFObject(className: "UserSettings")
                     self.userSettings["email"] = email
+                    self.userSettings["notificationStartTime"] = NSDate(dateString: "8:00 AM")
+                    self.userSettings["notificationEndTime"] = NSDate(dateString: "10:00 PM")
+                    self.userSettings["notificationFrequency"] = 3
+                    self.userSettings["questionsPerNotification"] = 10
                     self.userSettings.saveInBackground()
 
                     // var userDefaults = NSUserDefaults.standardUserDefaults()

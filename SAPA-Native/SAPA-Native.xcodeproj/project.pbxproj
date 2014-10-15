@@ -41,6 +41,7 @@
 		85F7661019E3326B00009758 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660F19E3326B00009758 /* Security.framework */; };
 		85F7661219E3327100009758 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7661119E3327100009758 /* StoreKit.framework */; };
 		85F7661419E3327900009758 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7661319E3327900009758 /* SystemConfiguration.framework */; };
+		85F8FBBD19EDC0E20062FD52 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F8FBBC19EDC0E20062FD52 /* Functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		85F7661119E3327100009758 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		85F7661319E3327900009758 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		85F7661519E332CC00009758 /* SAPA-Native-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAPA-Native-Bridging-Header.h"; sourceTree = "<group>"; };
+		85F8FBBC19EDC0E20062FD52 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				85E3C21019DCEAB600DFDB05 /* Segues */,
 				85E3C1E219DC666200DFDB05 /* Supporting Files */,
 				85A6B43419E471130077E603 /* Constants.swift */,
+				85F8FBBC19EDC0E20062FD52 /* Functions.swift */,
 			);
 			path = "SAPA-Native";
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */,
 				850A05E319E5BC7E003CEBBF /* MenuViewController.swift in Sources */,
 				8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */,
+				85F8FBBD19EDC0E20062FD52 /* Functions.swift in Sources */,
 				85E3C21A19DDD72500DFDB05 /* InitialDemographicsViewController.swift in Sources */,
 				85E3C21819DD41EC00DFDB05 /* SignUpScreenViewController.swift in Sources */,
 				85E3C20E19DCEA7200DFDB05 /* SlideLeftSegue.swift in Sources */,
