@@ -23,6 +23,10 @@ class MenuViewController: UIViewController {
     @IBOutlet var statsButton: UIButton!
     @IBOutlet var settingsButton: UIButton!
 
+    @IBOutlet var profileIcon: UIImageView!
+    @IBOutlet var statsIcon: UIImageView!
+    @IBOutlet var settingsIcon: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +43,7 @@ class MenuViewController: UIViewController {
         initializeButtons()
         initializeImages()
         initializeLabels()
+        initializeIcons()
 
     }
 
@@ -53,11 +58,11 @@ class MenuViewController: UIViewController {
         let statsButtonTopConstant = CGFloat(0.58450704225*viewHeight)
         let settingsButtonTopConstant = CGFloat(0.68661971831*viewHeight)
         
-        let buttonHeightMultiplier = CGFloat(0.11211267605)
+        let buttonHeightMultiplier = CGFloat(0.10211267605)
         let buttonWidthMultiplier = CGFloat(0.690625)
         
         let buttonWidth = CGFloat(0.690625*viewWidth)
-        let buttonHeight = CGFloat(0.11211267605*viewHeight)
+        let buttonHeight = CGFloat(0.10211267605*viewHeight)
         
         let profileButtonCenterXConstraint = NSLayoutConstraint(item: profileButton, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
         let profileButtonTopConstraint = NSLayoutConstraint(item: profileButton, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: profileButtonTopConstant)
@@ -125,6 +130,43 @@ class MenuViewController: UIViewController {
         emailLabel.text = userEmail
     }
 
+    func initializeIcons() {
+
+        let profileIconLeadingConstant = CGFloat(0.20625*viewWidth)
+        let profileIconTopConstant = CGFloat(0.51408450704*viewHeight)
+        let profileIconHeightMultiplier = CGFloat(0.03697183098)
+        let profileIconWidthMultiplier = CGFloat(0.046875)
+        
+        let profileIconLeadingConstraint = NSLayoutConstraint(item: profileIcon, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: profileIconLeadingConstant)
+        let profileIconTopConstraint = NSLayoutConstraint(item: profileIcon, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: profileIconTopConstant)
+        let profileIconHeightConstraint = NSLayoutConstraint(item: profileIcon, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: profileIconHeightMultiplier, constant: 0)
+        let profileIconWidthConstraint = NSLayoutConstraint(item: profileIcon, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: profileIconWidthMultiplier, constant: 0)
+        view.addConstraints([profileIconLeadingConstraint, profileIconTopConstraint, profileIconHeightConstraint, profileIconWidthConstraint])
+
+        let statsIconLeadingConstant = CGFloat(0.18125*viewWidth)
+        let statsIconTopConstant = CGFloat(0.60739436619*viewHeight)
+        let statsIconHeightMultiplier = CGFloat(0.05633802816)
+        let statsIconWidthMultiplier = CGFloat(0.1)
+        
+        let statsIconLeadingConstraint = NSLayoutConstraint(item: statsIcon, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: statsIconLeadingConstant)
+        let statsIconTopConstraint = NSLayoutConstraint(item: statsIcon, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: statsIconTopConstant)
+        let statsIconHeightConstraint = NSLayoutConstraint(item: statsIcon, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: statsIconHeightMultiplier, constant: 0)
+        let statsIconWidthConstraint = NSLayoutConstraint(item: statsIcon, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: statsIconWidthMultiplier, constant: 0)
+        view.addConstraints([statsIconLeadingConstraint, statsIconTopConstraint, statsIconHeightConstraint, statsIconWidthConstraint])
+
+        let settingsIconLeadingConstant = CGFloat(0.19375*viewWidth)
+        let settingsIconTopConstant = CGFloat(0.71478873239*viewHeight)
+        let settingsIconHeightMultiplier = CGFloat(0.0440140845)
+        let settingsIconWidthMultiplier = CGFloat(0.078125)
+        
+        let settingsIconLeadingConstraint = NSLayoutConstraint(item: settingsIcon, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: settingsIconLeadingConstant)
+        let settingsIconTopConstraint = NSLayoutConstraint(item: settingsIcon, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: settingsIconTopConstant)
+        let settingsIconHeightConstraint = NSLayoutConstraint(item: settingsIcon, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: settingsIconHeightMultiplier, constant: 0)
+        let settingsIconWidthConstraint = NSLayoutConstraint(item: settingsIcon, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: settingsIconWidthMultiplier, constant: 0)
+        view.addConstraints([settingsIconLeadingConstraint, settingsIconTopConstraint, settingsIconHeightConstraint, settingsIconWidthConstraint])
+
+    }
+
     /*
     // MARK: - Navigation
 
@@ -134,6 +176,13 @@ class MenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    @IBAction func showQuestionsView() {
+        let questionsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("QuestionsViewController") as QuestionsViewController
+        // questionsViewController.userSettings = userSettings
+        questionsViewController.modalPresentationStyle = .Popover
+        self.presentViewController(questionsViewController, animated: true, completion: nil)
+    }
 
     @IBAction func showProfileView() {
         let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
