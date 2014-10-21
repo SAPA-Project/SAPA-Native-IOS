@@ -242,6 +242,10 @@ class LoginScreenViewController: UIViewController {
                         self.loadMask.hidden = true
                         self.activityIndicator.stopAnimating()
 
+                        var currentInstallation:PFInstallation = PFInstallation.currentInstallation()
+                        currentInstallation["email"] = email
+                        currentInstallation.saveInBackground()
+
                         self.userSettings = users[0] as PFObject
 
                         if self.userSettings["gender"] == nil {

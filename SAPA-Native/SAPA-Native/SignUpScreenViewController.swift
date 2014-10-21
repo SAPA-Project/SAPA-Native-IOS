@@ -262,6 +262,10 @@ class SignUpScreenViewController: UIViewController {
                     self.loadMask.hidden = true
                     self.activityIndicator.stopAnimating()
 
+                    var currentInstallation:PFInstallation = PFInstallation.currentInstallation()
+                    currentInstallation["email"] = email
+                    currentInstallation.saveInBackground()
+
                     self.userSettings = PFObject(className: "UserSettings")
                     self.userSettings["email"] = email
                     self.userSettings["push"] = false

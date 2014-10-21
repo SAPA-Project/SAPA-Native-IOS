@@ -21,7 +21,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Initialize Parse
         Parse.setApplicationId("8WtfuZE2iww0adKIOU3x3DJH3LZK13zN6cAMQrtY", clientKey: "MzY50mxqRjmqm5uWm0eBOnTshAi9NumMZ7EU31mL")
 
+        //Register for Push notifications:
+        let notificationTypes:UIUserNotificationType = .Alert | .Badge | .Sound
+        let notificationSettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+
         return true
+    }
+    
+    func application(application: UIApplication!, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!) {
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
+        let currentInstallation:PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackground()
+    }
+    
+    func application(application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError error: NSError!) {
+        println(error.localizedDescription)
+    }
+    
+    func application(application: UIApplication!, didReceiveRemoteNotification userInfo:NSDictionary!) {
+        
+        var notification:NSDictionary = userInfo.objectForKey("aps") as NSDictionary
+        
+        if notification.objectForKey("content-available") != nil {
+            if notification.objectForKey("content-available")!.isEqualToNumber(1){
+                NSNotificationCenter.defaultCenter().postNotificationName("reloadTimeline", object: nil)
+            }
+        }
+        else {
+            PFPush.handlePush(userInfo)
+        }
+        
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -59,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("SAPA_Native", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)
+        return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
@@ -76,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError.errorWithDomain("YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")
@@ -110,6 +146,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+
+
 
 }
 
