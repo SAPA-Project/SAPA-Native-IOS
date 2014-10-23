@@ -76,6 +76,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        let currentNavigationController = self.window!.rootViewController as UINavigationController
+        currentNavigationController.popToRootViewControllerAnimated(false)
+        let currentViewController = currentNavigationController.visibleViewController
+        if currentViewController.isKindOfClass(MenuViewController) {
+            let menuViewController = currentViewController as MenuViewController
+            menuViewController.checkForAlert()
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {

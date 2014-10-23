@@ -27,6 +27,11 @@ class MenuViewController: UIViewController {
     @IBOutlet var statsIcon: UIImageView!
     @IBOutlet var settingsIcon: UIImageView!
 
+    var loadMask: UIView!
+    var activityIndicator: UIActivityIndicatorView!
+    
+    var viewLoadedAfterLogin: Bool!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,6 +49,13 @@ class MenuViewController: UIViewController {
         initializeImages()
         initializeLabels()
         initializeIcons()
+        initializeActivityIndicator()
+        
+        NSLog("loading view")
+        
+        if viewLoadedAfterLogin != nil {
+            checkForAlert()
+        }
 
     }
 
@@ -167,6 +179,21 @@ class MenuViewController: UIViewController {
 
     }
 
+    func initializeActivityIndicator() {
+        loadMask = UIView(frame: CGRectMake(0,0,CGFloat(viewWidth),CGFloat(viewHeight))) as UIView
+        loadMask.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha: 0.5)
+        loadMask.center = view.center
+        loadMask.hidden = true
+        view.addSubview(loadMask)
+
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0, 150, 150)) as UIActivityIndicatorView
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.color = UIColor(red: 0.0/255.0, green: 153.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        view.addSubview(activityIndicator)
+    }
+
     /*
     // MARK: - Navigation
 
@@ -177,9 +204,38 @@ class MenuViewController: UIViewController {
     }
     */
 
-    @IBAction func showQuestionsView() {
+    func checkForAlert() {
+
+        loadMask.hidden = false
+        activityIndicator.startAnimating()
+
+        userSettings.fetchInBackgroundWithBlock {
+
+            (userSettings: AnyObject!, error: NSError!) -> Void in
+
+            self.loadMask.hidden = true
+            self.activityIndicator.stopAnimating()
+
+            if error == nil {
+                self.userSettings = userSettings as PFObject
+                var push = userSettings["push"] as Bool
+                if push {
+                    self.userSettings["push"] = false
+                    self.userSettings.saveInBackground()
+                    self.showQuestionsView()
+                }
+            }
+
+            else {
+                let errorString = error.userInfo!["error"] as NSString
+            }
+
+        }
+    }
+
+    func showQuestionsView() {
         let questionsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("QuestionsViewController") as QuestionsViewController
-        // questionsViewController.userSettings = userSettings
+        questionsViewController.userSettings = userSettings
         questionsViewController.modalPresentationStyle = .Popover
         self.presentViewController(questionsViewController, animated: true, completion: nil)
     }

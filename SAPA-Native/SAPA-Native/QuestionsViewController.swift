@@ -10,6 +10,8 @@ import UIKit
 
 class QuestionsViewController: UIViewController {
 
+    var userSettings: PFObject!
+
     var viewWidth: Double!
     var viewHeight: Double!
 
@@ -24,6 +26,10 @@ class QuestionsViewController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var quitButton: UIButton!
 
+    var questionArray: Array<String>!
+
+    var currentQuestionIndex: Int!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +41,9 @@ class QuestionsViewController: UIViewController {
         let screenHeight = Double(screenRect.size.height)
         viewWidth = screenWidth
         viewHeight = screenHeight
+
+        questionArray = shuffle(STATEQUESTIONS)
+        currentQuestionIndex = 0
 
         //Initialize elements
         initializeLabels()
@@ -48,6 +57,8 @@ class QuestionsViewController: UIViewController {
     }
     
     func initializeLabels() {
+
+        var numQuestions = userSettings["questionsPerNotification"] as Int
         
         let questionNumberLabelTopConstant = CGFloat(0.07042253521*viewHeight)
         let questionNumberLabelHeightMultiplier = CGFloat(0.03697183098)
@@ -58,6 +69,8 @@ class QuestionsViewController: UIViewController {
         let questionNumberLabelHeightConstraint = NSLayoutConstraint(item: questionNumberLabel, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: questionNumberLabelHeightMultiplier, constant: 0)
         let questionNumberLabelWidthConstraint = NSLayoutConstraint(item: questionNumberLabel, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: questionNumberLabelWidthMultiplier, constant: 0)
         view.addConstraints([questionNumberLabelCenterXConstraint, questionNumberLabelTopConstraint, questionNumberLabelHeightConstraint, questionNumberLabelWidthConstraint])
+
+        questionNumberLabel.text = "Question " + String(currentQuestionIndex + 1) + " of " + String(numQuestions)
     
         let questionLabelTopConstant = CGFloat(0.15316901408*viewHeight)
         let questionLabelHeightMultiplier = CGFloat(0.14084507042)
@@ -69,6 +82,8 @@ class QuestionsViewController: UIViewController {
         let questionLabelWidthConstraint = NSLayoutConstraint(item: questionLabel, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: questionLabelWidthMultiplier, constant: 0)
         view.addConstraints([questionLabelCenterXConstraint, questionLabelTopConstraint, questionLabelHeightConstraint, questionLabelWidthConstraint])
         questionLabel.numberOfLines = 3
+
+        questionLabel.text = questionArray[currentQuestionIndex]
 
         let minLabelLeadingConstant = CGFloat(0.0)
         let minLabelTopConstant = CGFloat(0.40669014084*viewHeight)
@@ -83,6 +98,8 @@ class QuestionsViewController: UIViewController {
         minLabel.font = UIFont.systemFontOfSize(12.0)
         minLabel.numberOfLines = 2
 
+        minLabel.text = "Not at all"
+
         let maxLabelLeadingConstant = CGFloat(0.7625*viewWidth)
         let maxLabelTopConstant = CGFloat(0.40669014084*viewHeight)
         let maxLabelHeightMultiplier = CGFloat(0.08450704225)
@@ -96,6 +113,8 @@ class QuestionsViewController: UIViewController {
         maxLabel.font = UIFont.systemFontOfSize(12.0)
         maxLabel.numberOfLines = 2
 
+        maxLabel.text = "Very"
+
     }
 
     func initializeSlider() {
@@ -108,6 +127,7 @@ class QuestionsViewController: UIViewController {
         let sliderHeightConstraint = NSLayoutConstraint(item: slider, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: sliderHeightMultiplier, constant: 0)
         let sliderWidthConstraint = NSLayoutConstraint(item: slider, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: sliderWidthMultiplier, constant: 0)
         view.addConstraints([sliderCenterXConstraint, sliderTopConstraint, sliderHeightConstraint, sliderWidthConstraint])
+        slider.setValue(0.5, animated: true)
 
         slider.addTarget(self, action: "enableNextButton", forControlEvents: .TouchDown)
 
@@ -155,10 +175,66 @@ class QuestionsViewController: UIViewController {
         let cancelButtonWidthConstraint = NSLayoutConstraint(item: cancelButton, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: cancelButtonWidthMultiplier, constant: 0)
         view.addConstraints([cancelButtonLeadingConstraint, cancelButtonTopConstraint, cancelButtonHeightConstraint, cancelButtonWidthConstraint])
     }
+    
+    func disableNextButton() {
+        nextButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        nextButton.enabled = false
+    }
 
     func enableNextButton() {
         nextButton.layer.borderColor = UIColor(red: 64.0/255.0, green: 115.0/255.0, blue: 180.0/255.0, alpha: 1.0).CGColor
         nextButton.enabled = true
+    }
+    
+    @IBAction func didTapNext() {
+        
+        var numQuestions = userSettings["questionsPerNotification"] as Int
+        
+        var currentUserEmail = userSettings["email"] as String
+        var questionText = questionArray[currentQuestionIndex] as String
+        var sliderValue = slider.value
+        
+        var questionType = "State"
+        
+        var userResponse = PFObject(className: "UserResponse")
+        userResponse["email"] = currentUserEmail
+        userResponse["questionText"] = questionText
+        userResponse["responseValue"] = sliderValue
+        userResponse["questionType"] = questionType
+        userResponse.saveInBackground()
+        
+        if currentQuestionIndex == (numQuestions - 1) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        else {
+            
+            slider.setValue(0.5, animated: true)
+            
+            disableNextButton()
+            
+            currentQuestionIndex = currentQuestionIndex + 1
+            
+            if currentQuestionIndex == (numQuestions - 1) {
+                nextButton.setTitle("Done", forState: .Normal)
+            }
+            
+            UIView.beginAnimations("animateText", context: nil)
+            UIView.setAnimationCurve(.EaseIn)
+            UIView.setAnimationDuration(0.5)
+            questionNumberLabel.alpha = 0.0
+            questionNumberLabel.text = "Question " + String(currentQuestionIndex + 1) + " of " + String(numQuestions)
+            questionNumberLabel.alpha = 1.0
+            UIView.commitAnimations()
+            
+            UIView.beginAnimations("animateText", context: nil)
+            UIView.setAnimationCurve(.EaseIn)
+            UIView.setAnimationDuration(0.5)
+            questionLabel.alpha = 0.0
+            questionLabel.text = questionArray[currentQuestionIndex]
+            questionLabel.alpha = 1.0
+            UIView.commitAnimations()
+        }
+        
     }
 
     @IBAction func quit() {
