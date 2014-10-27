@@ -40,6 +40,20 @@ class LoginMainViewController: UIViewController {
         // NSLog("%@",userEmail)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        var currentUser = PFUser.currentUser()
+        if currentUser != nil {
+            var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            var newNavigationController = mainStoryboard.instantiateInitialViewController() as UINavigationController
+            // newNavigationController.modalTransitionStyle = .FlipHorizontal
+            var menuViewController = newNavigationController.viewControllers[0] as MenuViewController
+            self.presentViewController(newNavigationController, animated: false, completion: nil)
+            var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+
+            appDelegate.window!.rootViewController = newNavigationController
+        }
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

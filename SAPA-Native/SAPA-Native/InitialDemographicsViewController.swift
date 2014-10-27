@@ -245,13 +245,10 @@ class InitialDemographicsViewController: UIViewController {
         userSettings.saveInBackgroundWithBlock {
             (success: Bool!, error: NSError!) -> Void in
             if success != nil {
-                self.loadMask.hidden = true
-                self.activityIndicator.stopAnimating()
-                self.showMenuView()
+                
             }
             else {
-                self.loadMask.hidden = true
-                self.activityIndicator.stopAnimating()
+                
                 NSLog("%@", error)
             }
         }

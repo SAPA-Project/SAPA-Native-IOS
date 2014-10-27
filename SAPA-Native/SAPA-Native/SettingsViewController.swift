@@ -376,6 +376,23 @@ class SettingsViewController: UIViewController {
 
     }
 
+    @IBAction func logOutUser() {
+        var alert = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
+            NSLog("Logging out...")
+            PFUser.logOut()
+            self.view.endEditing(true)      
+            //Prepare new view controller
+            var loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            var newNavigationController = loginStoryboard.instantiateInitialViewController() as UINavigationController
+            newNavigationController.modalTransitionStyle = .FlipHorizontal
+            self.presentViewController(newNavigationController, animated: true, completion: nil)           
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     /*
     // MARK: - Navigation
 

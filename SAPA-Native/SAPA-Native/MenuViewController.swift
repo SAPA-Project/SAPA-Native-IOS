@@ -43,19 +43,54 @@ class MenuViewController: UIViewController {
         let screenHeight = Double(screenRect.size.height)
         viewWidth = screenWidth
         viewHeight = screenHeight
-        
-        //Initialize elements:
+
         initializeButtons()
         initializeImages()
         initializeLabels()
         initializeIcons()
         initializeActivityIndicator()
         
-        NSLog("loading view")
-        
-        if viewLoadedAfterLogin != nil {
-            checkForAlert()
+        //Initialize elements:
+        if userSettings == nil {
+
+            loadMask.hidden = false
+            activityIndicator.startAnimating()
+
+            var currentUser = PFUser.currentUser()
+            let email = currentUser["email"] as String
+            var query = PFQuery(className:"UserSettings")
+            query.whereKey("email", equalTo: email)
+            query.getFirstObjectInBackgroundWithBlock {
+
+                (user: PFObject!, error: NSError!) -> Void in
+                  
+                if error == nil {
+                    
+                    self.userSettings = user
+                    self.checkForAlert()
+
+                    self.viewLoadedAfterLogin = true
+
+                } 
+                
+                else {
+                    
+                    self.loadMask.hidden = true
+                    self.activityIndicator.stopAnimating()
+                    let errorString = error.userInfo!["error"] as NSString
+
+                }
+
+            }
         }
+        
+        else {
+            if viewLoadedAfterLogin != nil {
+                checkForAlert()
+            }
+        }
+        
+    
 
     }
 
@@ -128,6 +163,9 @@ class MenuViewController: UIViewController {
     }
 
     func initializeLabels() {
+
+        var currentUser = PFUser.currentUser()
+
         let emailLabelTopConstant = CGFloat(0.36619718309*viewHeight)
         let emailLabelHeightMultiplier = CGFloat(0.04697183098)
         let emailLabelWidthMultiplier = CGFloat(0.9)
@@ -138,7 +176,7 @@ class MenuViewController: UIViewController {
         let emailLabelWidthConstraint = NSLayoutConstraint(item: emailLabel, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: emailLabelWidthMultiplier, constant: 0)
         view.addConstraints([emailLabelCenterXConstraint, emailLabelTopConstraint, emailLabelHeightConstraint, emailLabelWidthConstraint])
 
-        var userEmail = userSettings["email"] as String
+        var userEmail = currentUser["email"] as String
         emailLabel.text = userEmail
     }
 
@@ -206,31 +244,38 @@ class MenuViewController: UIViewController {
 
     func checkForAlert() {
 
-        loadMask.hidden = false
-        activityIndicator.startAnimating()
+        NSLog("checking...")
 
-        userSettings.fetchInBackgroundWithBlock {
+        if userSettings != nil {
 
-            (userSettings: AnyObject!, error: NSError!) -> Void in
+            loadMask.hidden = false
+            activityIndicator.startAnimating()
 
-            self.loadMask.hidden = true
-            self.activityIndicator.stopAnimating()
+            userSettings.fetchInBackgroundWithBlock {
 
-            if error == nil {
-                self.userSettings = userSettings as PFObject
-                var push = userSettings["push"] as Bool
-                if push {
-                    self.userSettings["push"] = false
-                    self.userSettings.saveInBackground()
-                    self.showQuestionsView()
+                (userSettings: AnyObject!, error: NSError!) -> Void in
+
+                self.loadMask.hidden = true
+                self.activityIndicator.stopAnimating()
+
+                if error == nil {
+                    self.userSettings = userSettings as PFObject
+                    var push = userSettings["push"] as Bool
+                    if push {
+                        self.userSettings["push"] = false
+                        self.userSettings.saveInBackground()
+                        self.showQuestionsView()
+                    }
                 }
-            }
 
-            else {
-                let errorString = error.userInfo!["error"] as NSString
-            }
+                else {
+                    let errorString = error.userInfo!["error"] as NSString
+                }
 
+            }
+            
         }
+
     }
 
     func showQuestionsView() {
