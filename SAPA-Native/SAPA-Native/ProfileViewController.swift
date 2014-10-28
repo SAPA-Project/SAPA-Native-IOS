@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var userSettings: PFObject!
 
@@ -19,28 +19,28 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var viewWidth: Double!
     var viewHeight: Double!
 
-    @IBOutlet var scroller: UIScrollView!
-
-    @IBOutlet var scrollerInnerView: UIView!
+    var scrollView: UIScrollView!
 
     @IBOutlet var titlebar: UIView!
     @IBOutlet var menuButton: UIButton!
     @IBOutlet var titlebarTitle: UILabel!
 
-    @IBOutlet var genderButton: UISegmentedControl!
-    @IBOutlet var ageTextField: UITextField!
-    @IBOutlet var zipcodeTextField: UITextField!
-    @IBOutlet var heightTextField: UITextField!
-    @IBOutlet var weightTextField: UITextField!
-    @IBOutlet var maritalStatusTextField: UITextField!
-    @IBOutlet var relationshipStatusTextField: UITextField!
-    @IBOutlet var exerciseTextField: UITextField!
-    @IBOutlet var smokingTextField: UITextField!
-    @IBOutlet var countryTextField: UITextField!
-    @IBOutlet var stateTextField: UITextField!
+    var genderButton: UISegmentedControl!
+    var ageTextField: UITextField!
+    var zipcodeTextField: UITextField!
+    var heightTextField: UITextField!
+    var weightTextField: UITextField!
+    var maritalStatusTextField: UITextField!
+    var relationshipStatusTextField: UITextField!
+    var exerciseTextField: UITextField!
+    var smokingTextField: UITextField!
+    var countryTextField: UITextField!
+    var stateTextField: UITextField!
 
     var pickerView: UIPickerView!
     var pickerData: NSArray!
+
+    var currentListItemHeight: CGFloat!
 
     var currentTextField: String!
 
@@ -93,44 +93,42 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.view.endEditing(true)
     }
 
-    func longPressView(gestureRecognizer: UIGestureRecognizer) {
-        NSLog("long press view")
-        // self.view.endEditing(true)
-    }
-
     func initializeScroller() {
-        let scrollerHeight = CGFloat(viewHeight*0.88028169014)
-        let scrollerWidth = CGFloat(viewWidth)
-        scroller.contentSize = CGSizeMake(scrollerWidth,scrollerHeight)
-
-        // let scrollerInnerViewHeightMultiplier = CGFloat(1.48591549296)
-        let scrollerInnerViewWidthMultiplier = CGFloat(1.0)
-
-        let scrollerInnerViewHeightConstraint = NSLayoutConstraint(item: scrollerInnerView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.0, constant: 991.0)
-        let scrollerInnerViewWidthConstraint = NSLayoutConstraint(item: scrollerInnerView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: scrollerInnerViewWidthMultiplier, constant: 0)
-        view.addConstraints([scrollerInnerViewHeightConstraint, scrollerInnerViewWidthConstraint])
-
+        let scrollViewHeight = CGFloat(viewHeight)
+        let scrollViewWidth = CGFloat(viewWidth)
+        let scrollableHeight = CGFloat(1475.0)
+        let scrollViewTopConstant = CGFloat(64.0)
+        scrollView = UIScrollView()
+        scrollView.frame = CGRectMake(0,scrollViewTopConstant,scrollViewWidth,scrollViewHeight)
+        scrollView.backgroundColor = UIColor.whiteColor()
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.scrollEnabled = true
+        scrollView.userInteractionEnabled = true
+        scrollView.keyboardDismissMode = .OnDrag
+        scrollView.contentSize = CGSizeMake(scrollViewWidth,scrollableHeight)
+        view.addSubview(scrollView)
+        currentListItemHeight = CGFloat(0.0)
     }
     
     func initializeTitlebar() {
 
         let titlebarTopConstant = CGFloat(0)
-        let titlebarHeightMultiplier = CGFloat(0.11971830985)
+        let titlebarHeightConstant = CGFloat(64.0)
         let titlebarWidthMultiplier = CGFloat(1.0)
-        let titlebarHeight = CGFloat(0.11971830985*viewHeight)
+        let titlebarHeight = CGFloat(64.0)
         let titlebarWidth = CGFloat(1.0*viewWidth)
 
-        let menuButtonTopConstant = CGFloat(0.03873239436*viewHeight)
-        let menuButtonHeightMultiplier = CGFloat(0.07218309859)
-        let menuButtonWidthMultiplier = CGFloat(0.128125)
+        let menuButtonTopConstant = CGFloat(22.0)
+        let menuButtonHeightConstant = CGFloat(41.0)
+        let menuButtonWidthConstant = CGFloat(41.0)
 
-        let titlebarTitleTopConstant = CGFloat(0.05105633802*viewHeight)
-        let titlebarTitleHeightMultiplier = CGFloat(0.04929577464)
+        let titlebarTitleTopConstant = CGFloat(10.0)
+        let titlebarTitleHeightConstant = CGFloat(28.0)
         let titlebarTitleWidthMultiplier = CGFloat(0.55)
 
         let titlebarCenterXConstraint = NSLayoutConstraint(item: titlebar, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
         let titlebarTopConstraint = NSLayoutConstraint(item: titlebar, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: titlebarTopConstant)
-        let titlebarHeightConstraint = NSLayoutConstraint(item: titlebar, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: titlebarHeightMultiplier, constant: 0)
+        let titlebarHeightConstraint = NSLayoutConstraint(item: titlebar, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.0, constant: titlebarHeightConstant)
         let titlebarWidthConstraint = NSLayoutConstraint(item: titlebar, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: titlebarWidthMultiplier, constant: 0)
         view.addConstraints([titlebarCenterXConstraint, titlebarTopConstraint, titlebarHeightConstraint, titlebarWidthConstraint])
         var titlebarBottomBorder = UIView(frame: CGRectMake(0, titlebarHeight - 1.0, titlebarWidth, 1))
@@ -139,27 +137,38 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
         let menuButtonLeadingConstraint = NSLayoutConstraint(item: menuButton, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0)
         let menuButtonTopConstraint = NSLayoutConstraint(item: menuButton, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: menuButtonTopConstant)
-        let menuButtonHeightConstraint = NSLayoutConstraint(item: menuButton, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: menuButtonHeightMultiplier, constant: 0)
-        let menuButtonWidthConstraint = NSLayoutConstraint(item: menuButton, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: menuButtonWidthMultiplier, constant: 0)
+        let menuButtonHeightConstraint = NSLayoutConstraint(item: menuButton, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.0, constant: menuButtonHeightConstant)
+        let menuButtonWidthConstraint = NSLayoutConstraint(item: menuButton, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.0, constant: menuButtonWidthConstant)
         view.addConstraints([menuButtonLeadingConstraint, menuButtonTopConstraint, menuButtonHeightConstraint, menuButtonWidthConstraint])
 
         let titlebarTitleCenterXConstraint = NSLayoutConstraint(item: titlebarTitle, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
         let titlebarTitleTopConstraint = NSLayoutConstraint(item: titlebarTitle, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: titlebarTitleTopConstant)
-        let titlebarTitleHeightConstraint = NSLayoutConstraint(item: titlebarTitle, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: titlebarTitleHeightMultiplier, constant: 0)
+        let titlebarTitleHeightConstraint = NSLayoutConstraint(item: titlebarTitle, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.0, constant: titlebarHeightConstant)
         let titlebarTitleWidthConstraint = NSLayoutConstraint(item: titlebarTitle, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: titlebarTitleWidthMultiplier, constant: 0)
         view.addConstraints([titlebarTitleCenterXConstraint, titlebarTitleTopConstraint, titlebarTitleHeightConstraint, titlebarTitleWidthConstraint])
         
     }
 
     func initializeButtons() {
+
+        let cellHeight = CGFloat(65.0)
+        let cellWidth = CGFloat(viewWidth)
         
-        let genderButtonTopConstant = CGFloat(0.0616197183*viewHeight)
-        let buttonWidthMultiplier = CGFloat(0.640625)
-        let genderButtonCenterXConstraint = NSLayoutConstraint(item: genderButton, attribute: .CenterX, relatedBy: .Equal, toItem: scrollerInnerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let genderButtonTopConstraint = NSLayoutConstraint(item: genderButton, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: genderButtonTopConstant)
-        let genderButtonWidthConstraint = NSLayoutConstraint(item: genderButton, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: buttonWidthMultiplier, constant: 0)
-        view.addConstraints([genderButtonCenterXConstraint, genderButtonWidthConstraint])
+        var cell = UIView()
+        cell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(cell)
+
+        let genderButtonLeadingConstant = CGFloat((viewWidth - 230)/2)
+        let genderButtonTopConstant = CGFloat(18.0)
+        let genderButtonWidth = CGFloat(230.0)
+        
+        genderButton = UISegmentedControl(items: ["Male", "Female"])
+        genderButton.frame = CGRectMake(genderButtonLeadingConstant, genderButtonTopConstant, genderButtonWidth, 29.0)
         genderButton.addTarget(self, action: "genderButtonChange", forControlEvents: .ValueChanged)
+
+        cell.addSubview(genderButton)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
 
         let gender = userSettings["gender"] as String
 
@@ -174,88 +183,193 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     func initializeTextFields() {
 
-        let textFieldHeightMultiplier = CGFloat(0.07496251874)
-        let textFieldWidthMultiplier = CGFloat(0.640625)
+        let cellHeight = CGFloat(65.0)
+        let cellWidth = CGFloat(viewWidth)
         
+        var ageCell = UIView()
+        ageCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(ageCell)
+
+        let textFieldLeadingConstant = CGFloat((viewWidth - 230)/2)
+        let textFieldTopConstant = CGFloat(13.0)
+        let textFieldHeight = CGFloat(39.0)
+        let textFieldWidth = CGFloat(230.0)
+        
+        //age
+        ageTextField = UITextField()
+        ageTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         ageTextField.layer.borderWidth = 1.0
         ageTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         ageTextField.layer.cornerRadius = 3
-        let ageTextFieldCenterXConstraint = NSLayoutConstraint(item: ageTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let ageTextFieldHeightConstraint = NSLayoutConstraint(item: ageTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let ageTextFieldWidthConstraint = NSLayoutConstraint(item: ageTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([ageTextFieldCenterXConstraint, ageTextFieldHeightConstraint, ageTextFieldWidthConstraint])
+        ageTextField.textAlignment = .Center
+        ageTextField.placeholder = "Age"
+        ageTextField.delegate = self
 
+        ageCell.addSubview(ageTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //zipcode
+        var zipcodeCell = UIView()
+        zipcodeCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(zipcodeCell)
+
+        zipcodeTextField = UITextField()
+        zipcodeTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         zipcodeTextField.layer.borderWidth = 1.0
         zipcodeTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         zipcodeTextField.layer.cornerRadius = 3
-        let zipcodeTextFieldCenterXConstraint = NSLayoutConstraint(item: zipcodeTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let zipcodeTextFieldHeightConstraint = NSLayoutConstraint(item: zipcodeTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let zipcodeTextFieldWidthConstraint = NSLayoutConstraint(item: zipcodeTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([zipcodeTextFieldCenterXConstraint, zipcodeTextFieldHeightConstraint, zipcodeTextFieldWidthConstraint])
+        zipcodeTextField.textAlignment = .Center
+        zipcodeTextField.placeholder = "Zipcode"
+        zipcodeTextField.delegate = self
 
+        zipcodeCell.addSubview(zipcodeTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //height
+        var heightCell = UIView()
+        heightCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(heightCell)
+
+        heightTextField = UITextField()
+        heightTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         heightTextField.layer.borderWidth = 1.0
         heightTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         heightTextField.layer.cornerRadius = 3
-        let heightTextFieldCenterXConstraint = NSLayoutConstraint(item: heightTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let heightTextFieldHeightConstraint = NSLayoutConstraint(item: heightTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let heightTextFieldWidthConstraint = NSLayoutConstraint(item: heightTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([heightTextFieldCenterXConstraint, heightTextFieldHeightConstraint, heightTextFieldWidthConstraint])
+        heightTextField.textAlignment = .Center
+        heightTextField.placeholder = "Height"
+        heightTextField.delegate = self
 
+        heightCell.addSubview(heightTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //weight
+        var weightCell = UIView()
+        weightCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(weightCell)
+
+        weightTextField = UITextField()
+        weightTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         weightTextField.layer.borderWidth = 1.0
         weightTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         weightTextField.layer.cornerRadius = 3
-        let weightTextFieldCenterXConstraint = NSLayoutConstraint(item: weightTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let weightTextFieldHeightConstraint = NSLayoutConstraint(item: weightTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let weightTextFieldWidthConstraint = NSLayoutConstraint(item: weightTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([weightTextFieldCenterXConstraint, weightTextFieldHeightConstraint, weightTextFieldWidthConstraint])
+        weightTextField.textAlignment = .Center
+        weightTextField.placeholder = "Weight"
+        weightTextField.delegate = self
 
+        weightCell.addSubview(weightTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //maritalStatus
+        var maritalStatusCell = UIView()
+        maritalStatusCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(maritalStatusCell)
+
+        maritalStatusTextField = UITextField()
+        maritalStatusTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         maritalStatusTextField.layer.borderWidth = 1.0
         maritalStatusTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         maritalStatusTextField.layer.cornerRadius = 3
-        let maritalStatusTextFieldCenterXConstraint = NSLayoutConstraint(item: maritalStatusTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let maritalStatusTextFieldHeightConstraint = NSLayoutConstraint(item: maritalStatusTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let maritalStatusTextFieldWidthConstraint = NSLayoutConstraint(item: maritalStatusTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([maritalStatusTextFieldCenterXConstraint, maritalStatusTextFieldHeightConstraint, maritalStatusTextFieldWidthConstraint])
+        maritalStatusTextField.textAlignment = .Center
+        maritalStatusTextField.placeholder = "Marital status"
+        maritalStatusTextField.delegate = self
 
+        maritalStatusCell.addSubview(maritalStatusTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //relationshipStatus
+        var relationshipStatusCell = UIView()
+        relationshipStatusCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(relationshipStatusCell)
+
+        relationshipStatusTextField = UITextField()
+        relationshipStatusTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         relationshipStatusTextField.layer.borderWidth = 1.0
         relationshipStatusTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         relationshipStatusTextField.layer.cornerRadius = 3
-        let relationshipStatusTextFieldCenterXConstraint = NSLayoutConstraint(item: relationshipStatusTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let relationshipStatusTextFieldHeightConstraint = NSLayoutConstraint(item: relationshipStatusTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let relationshipStatusTextFieldWidthConstraint = NSLayoutConstraint(item: relationshipStatusTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([relationshipStatusTextFieldCenterXConstraint, relationshipStatusTextFieldHeightConstraint, relationshipStatusTextFieldWidthConstraint])
+        relationshipStatusTextField.textAlignment = .Center
+        relationshipStatusTextField.placeholder = "Relationship status"
+        relationshipStatusTextField.delegate = self
 
+        relationshipStatusCell.addSubview(relationshipStatusTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //exercise
+        var exerciseCell = UIView()
+        exerciseCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(exerciseCell)
+
+        exerciseTextField = UITextField()
+        exerciseTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         exerciseTextField.layer.borderWidth = 1.0
         exerciseTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         exerciseTextField.layer.cornerRadius = 3
-        let exerciseTextFieldCenterXConstraint = NSLayoutConstraint(item: exerciseTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let exerciseTextFieldHeightConstraint = NSLayoutConstraint(item: exerciseTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let exerciseTextFieldWidthConstraint = NSLayoutConstraint(item: exerciseTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([exerciseTextFieldCenterXConstraint, exerciseTextFieldHeightConstraint, exerciseTextFieldWidthConstraint])
+        exerciseTextField.textAlignment = .Center
+        exerciseTextField.placeholder = "How often do you exercise?"
+        exerciseTextField.delegate = self
 
+        exerciseCell.addSubview(exerciseTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //smoking
+        var smokingCell = UIView()
+        smokingCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(smokingCell)
+
+        smokingTextField = UITextField()
+        smokingTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         smokingTextField.layer.borderWidth = 1.0
         smokingTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         smokingTextField.layer.cornerRadius = 3
-        let smokingTextFieldCenterXConstraint = NSLayoutConstraint(item: smokingTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let smokingTextFieldHeightConstraint = NSLayoutConstraint(item: smokingTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let smokingTextFieldWidthConstraint = NSLayoutConstraint(item: smokingTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([smokingTextFieldCenterXConstraint, smokingTextFieldHeightConstraint, smokingTextFieldWidthConstraint])
+        smokingTextField.textAlignment = .Center
+        smokingTextField.placeholder = "How often do you smoke?"
+        smokingTextField.delegate = self
 
+        smokingCell.addSubview(smokingTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //country
+        var countryCell = UIView()
+        countryCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(countryCell)
+
+        countryTextField = UITextField()
+        countryTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         countryTextField.layer.borderWidth = 1.0
         countryTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         countryTextField.layer.cornerRadius = 3
-        let countryTextFieldCenterXConstraint = NSLayoutConstraint(item: countryTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let countryTextFieldHeightConstraint = NSLayoutConstraint(item: countryTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let countryTextFieldWidthConstraint = NSLayoutConstraint(item: countryTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([countryTextFieldCenterXConstraint, countryTextFieldHeightConstraint, countryTextFieldWidthConstraint])
+        countryTextField.textAlignment = .Center
+        countryTextField.placeholder = "Country"
+        countryTextField.delegate = self
 
+        countryCell.addSubview(countryTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //state
+        var stateCell = UIView()
+        stateCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(stateCell)
+
+        stateTextField = UITextField()
+        stateTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         stateTextField.layer.borderWidth = 1.0
         stateTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
         stateTextField.layer.cornerRadius = 3
-        let stateTextFieldCenterXConstraint = NSLayoutConstraint(item: stateTextField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let stateTextFieldHeightConstraint = NSLayoutConstraint(item: stateTextField, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: textFieldHeightMultiplier, constant: 0)
-        let stateTextFieldWidthConstraint = NSLayoutConstraint(item: stateTextField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: textFieldWidthMultiplier, constant: 0)
-        view.addConstraints([stateTextFieldCenterXConstraint, stateTextFieldHeightConstraint, stateTextFieldWidthConstraint])
+        stateTextField.textAlignment = .Center
+        stateTextField.placeholder = "State (USA only)"
+        stateTextField.delegate = self
+
+        stateCell.addSubview(stateTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
 
         let userAge = userSettings["age"] as Int
         let age = String(userAge)
@@ -363,9 +477,14 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     func textFieldDidBeginEditing(textField: UITextField!) {
 
-        let textFieldYPosition = Double(textField.frame.origin.y - scroller.contentOffset.y)
+        let absoluteframe = textField.convertRect(textField.frame, toView: UIApplication.sharedApplication().keyWindow)
+        // [mytextfield convertRect:mytextfield.frame toView:[UIApplication sharedApplication].keyWindow]
 
-        if textFieldYPosition > viewHeight/3 {
+        let textFieldYPosition = Double(absoluteframe.origin.y)
+
+        NSLog("%f", textFieldYPosition)
+
+        if textFieldYPosition > 2*viewHeight/3 {
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(0.25)
             view.center = CGPointMake(self.originalCenter.x, keyboardPushedNewCenter);
@@ -425,10 +544,8 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func textFieldDidEndEditing(textField: UITextField!) {
-        
-        let textFieldYPosition = Double(textField.frame.origin.y - scroller.contentOffset.y)
 
-        if textFieldYPosition > viewHeight/3 {
+        if view.center == CGPointMake(self.originalCenter.x, keyboardPushedNewCenter) {
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(0.25)
             view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y);
