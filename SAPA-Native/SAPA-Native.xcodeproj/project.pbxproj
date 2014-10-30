@@ -13,6 +13,9 @@
 		850A05E319E5BC7E003CEBBF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A05E219E5BC7E003CEBBF /* MenuViewController.swift */; };
 		854F597919E70EA000E24617 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 854F597819E70EA000E24617 /* menu.png */; };
 		854F597C19E7108F00E24617 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F597B19E7108F00E24617 /* ProfileViewController.swift */; };
+		85795B3B1A0183E500A6901B /* PhotoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */; };
+		85795B3D1A01855400A6901B /* cancel-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 85795B3C1A01855400A6901B /* cancel-black.png */; };
+		85795B3F1A01900300A6901B /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B3E1A01900300A6901B /* CollectionViewController.swift */; };
 		8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8583856A19E5D5F70016E064 /* UserSettingsModel.swift */; };
 		85A6B43519E471130077E603 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B43419E471130077E603 /* Constants.swift */; };
 		85C38ACC19EEEC55008BA9FB /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C38ACB19EEEC55008BA9FB /* QuestionsViewController.swift */; };
@@ -66,6 +69,9 @@
 		850A05E219E5BC7E003CEBBF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		854F597819E70EA000E24617 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		854F597B19E7108F00E24617 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryViewController.swift; sourceTree = "<group>"; };
+		85795B3C1A01855400A6901B /* cancel-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-black.png"; sourceTree = "<group>"; };
+		85795B3E1A01900300A6901B /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		8583856A19E5D5F70016E064 /* UserSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
 		85A6B43419E471130077E603 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		85C38ACB19EEEC55008BA9FB /* QuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +224,8 @@
 				85E3C1E219DC666200DFDB05 /* Supporting Files */,
 				85A6B43419E471130077E603 /* Constants.swift */,
 				85F8FBBC19EDC0E20062FD52 /* Functions.swift */,
+				85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */,
+				85795B3E1A01900300A6901B /* CollectionViewController.swift */,
 			);
 			path = "SAPA-Native";
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 		85E3C1E219DC666200DFDB05 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				85795B3C1A01855400A6901B /* cancel-black.png */,
 				85C38ACF19EF013D008BA9FB /* progress.png */,
 				85C38AD019EF013D008BA9FB /* settings.png */,
 				85C38AD119EF013D008BA9FB /* user.png */,
@@ -360,6 +369,7 @@
 				854F597919E70EA000E24617 /* menu.png in Resources */,
 				85E3C20C19DCE30500DFDB05 /* arrow-left.png in Resources */,
 				85C38AD419EF013D008BA9FB /* user.png in Resources */,
+				85795B3D1A01855400A6901B /* cancel-black.png in Resources */,
 				850A05DF19E5B77C003CEBBF /* plus.png in Resources */,
 				85C38AD319EF013D008BA9FB /* settings.png in Resources */,
 				850A05DD19E5B688003CEBBF /* Main.storyboard in Resources */,
@@ -388,12 +398,14 @@
 			files = (
 				85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */,
 				850A05E319E5BC7E003CEBBF /* MenuViewController.swift in Sources */,
+				85795B3B1A0183E500A6901B /* PhotoLibraryViewController.swift in Sources */,
 				8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */,
 				85F8FBBD19EDC0E20062FD52 /* Functions.swift in Sources */,
 				85E3C21A19DDD72500DFDB05 /* InitialDemographicsViewController.swift in Sources */,
 				85E3C21819DD41EC00DFDB05 /* SignUpScreenViewController.swift in Sources */,
 				85E3C20E19DCEA7200DFDB05 /* SlideLeftSegue.swift in Sources */,
 				854F597C19E7108F00E24617 /* ProfileViewController.swift in Sources */,
+				85795B3F1A01900300A6901B /* CollectionViewController.swift in Sources */,
 				85E3C1EA19DC666200DFDB05 /* LoginMainViewController.swift in Sources */,
 				85E3C1E519DC666200DFDB05 /* AppDelegate.swift in Sources */,
 				85E3C20A19DC9EA000DFDB05 /* LoginScreenViewController.swift in Sources */,

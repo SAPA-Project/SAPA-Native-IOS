@@ -44,6 +44,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
     var currentTextField: String!
 
+    var currentRow: Int!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,7 +59,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         viewHeight = screenHeight
 
         //Set keyboard height
-        keyboardPushedNewCenter = CGFloat(0.15478873239*viewHeight)
+        keyboardPushedNewCenter = CGFloat(40.0)
         
         //Set screen center
         originalCenter = view.center
@@ -449,6 +451,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }
 
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        currentRow = row
         if currentTextField == "height" {
             heightTextField.text = pickerData![row] as String
         }
@@ -484,7 +487,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
         NSLog("%f", textFieldYPosition)
 
-        if textFieldYPosition > 2*viewHeight/3 {
+        if textFieldYPosition > viewHeight/2 {
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(0.25)
             view.center = CGPointMake(self.originalCenter.x, keyboardPushedNewCenter);
@@ -535,6 +538,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             currentTextField = "state"
         }
 
+        currentRow = 0
+
         pickerView.reloadAllComponents()
 
         if textField.text == "" && textField != ageTextField && textField != zipcodeTextField {
@@ -561,27 +566,35 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             userSettings["zipcode"] = zipcodeTextField.text.toInt()
         }   
         else if textField == heightTextField {
+            userSettings["heightNumber"] = HEIGHTVALUES[currentRow]
             userSettings["height"] = heightTextField.text
         } 
         else if textField == weightTextField {
+            userSettings["weightNumber"] = WEIGHTVALUES[currentRow]
             userSettings["weight"] = weightTextField.text
         } 
         else if textField == maritalStatusTextField {
+            userSettings["maritalStatusNumber"] = MARITALSTATUSVALUES[currentRow]
             userSettings["maritalStatus"] = maritalStatusTextField.text
         } 
         else if textField == relationshipStatusTextField {
+            userSettings["relationshipStatusNumber"] = RELATIONSHIPSTATUSVALUES[currentRow]
             userSettings["relationshipStatus"] = relationshipStatusTextField.text
         } 
         else if textField == exerciseTextField {
+            userSettings["exerciseFrequencyNumber"] = EXERCISEVALUES[currentRow]
             userSettings["exerciseFrequency"] = exerciseTextField.text
         } 
         else if textField == smokingTextField {
+            userSettings["smokingFrequencyNumber"] = SMOKINGVALUES[currentRow]
             userSettings["smokingFrequency"] = smokingTextField.text
         } 
         else if textField == countryTextField {
+            userSettings["countryNumber"] = currentRow + 1
             userSettings["country"] = countryTextField.text
         } 
         else if textField == stateTextField {
+            userSettings["stateNumber"] = currentRow + 1
             userSettings["state"] = stateTextField.text
         } 
 

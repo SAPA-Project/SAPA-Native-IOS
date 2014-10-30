@@ -392,6 +392,85 @@
             </objects>
             <point key="canvasLocation" x="1824" y="-221"/>
         </scene>
+        <!--Photo Library View Controller-->
+        <scene sceneID="y6x-yR-RZb">
+            <objects>
+                <viewController storyboardIdentifier="PhotoLibraryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2lM-bU-FQX" customClass="PhotoLibraryViewController" customModule="SAPA_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ly1-ft-7Og"/>
+                        <viewControllerLayoutGuide type="bottom" id="QW9-oz-ZCh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mxt-oU-zxO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afi-Qd-B3G">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lh9-cg-Mgr">
+                                        <rect key="frame" x="72" y="29" width="176" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69c-n1-rK2">
+                                        <rect key="frame" x="279" y="22" width="41" height="41"/>
+                                        <inset key="contentEdgeInsets" minX="13" minY="13" maxX="13" maxY="13"/>
+                                        <state key="normal" image="cancel-black.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel" destination="2lM-bU-FQX" eventType="touchUpInside" id="fmd-KT-557"/>
+                                            <action selector="navigateBack" destination="JQa-Hg-Ksn" eventType="touchUpInside" id="Ufx-5H-j32"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Lh9-cg-Mgr" secondAttribute="bottom" constant="11" placeholder="YES" id="1ki-8n-E86"/>
+                                    <constraint firstItem="Lh9-cg-Mgr" firstAttribute="centerX" secondItem="afi-Qd-B3G" secondAttribute="centerX" placeholder="YES" id="2p5-Zt-ahT"/>
+                                    <constraint firstItem="Lh9-cg-Mgr" firstAttribute="top" secondItem="afi-Qd-B3G" secondAttribute="top" constant="29" placeholder="YES" id="Mvw-SA-XnY"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lh9-cg-Mgr" secondAttribute="trailing" constant="72" placeholder="YES" id="Sqo-Jc-cv0"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z5Z-K0-3oH">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ys-nm-2QD">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YLQ-ok-rAn">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="2lM-bU-FQX" id="Ynl-gI-eFg"/>
+                                    <outlet property="delegate" destination="2lM-bU-FQX" id="GY8-t7-jyf"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="69c-n1-rK2" id="3fx-b8-wVz"/>
+                        <outlet property="collectionView" destination="z5Z-K0-3oH" id="cMj-HO-lON"/>
+                        <outlet property="titlebar" destination="afi-Qd-B3G" id="36Z-3I-0bR"/>
+                        <outlet property="titlebarTitle" destination="Lh9-cg-Mgr" id="G0f-da-0Yw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5O-DV-hke" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="-885"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="mjC-xP-Fc3">
             <objects>
@@ -475,6 +554,7 @@
     </scenes>
     <resources>
         <image name="add-photo.png" width="350" height="350"/>
+        <image name="cancel-black.png" width="43" height="43"/>
         <image name="cancel.png" width="56" height="56"/>
         <image name="menu.png" width="1200" height="1200"/>
         <image name="progress.png" width="400" height="400"/>

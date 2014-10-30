@@ -160,6 +160,12 @@ class MenuViewController: UIViewController {
         profilePicture.layer.borderWidth = 1.0
         profilePicture.layer.borderColor = UIColor.blackColor().CGColor
         profilePicture.layer.cornerRadius = imageWidth/2
+        profilePicture.userInteractionEnabled = true
+
+        let didTapImageView : Selector = "didTapImageView"
+        let viewTapRecognizer = UITapGestureRecognizer(target: self, action: didTapImageView)
+        viewTapRecognizer.numberOfTapsRequired = 1
+        profilePicture.addGestureRecognizer(viewTapRecognizer)
     }
 
     func initializeLabels() {
@@ -230,6 +236,18 @@ class MenuViewController: UIViewController {
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.color = UIColor(red: 0.0/255.0, green: 153.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         view.addSubview(activityIndicator)
+    }
+
+    func didTapImageView() {
+        var addProfilePictureActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        addProfilePictureActionSheet.addAction(UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: { action in
+            let photoLibraryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoLibraryViewController") as PhotoLibraryViewController
+            photoLibraryViewController.modalPresentationStyle = .Popover
+            self.presentViewController(photoLibraryViewController, animated: true, completion: nil)   
+        }))
+        addProfilePictureActionSheet.addAction(UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default, handler: nil))
+        addProfilePictureActionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(addProfilePictureActionSheet, animated: true, completion: nil)
     }
 
     /*

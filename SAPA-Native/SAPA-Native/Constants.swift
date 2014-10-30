@@ -174,7 +174,49 @@ let HEIGHTOPTIONS = [
 	"6ft 11in (211cm)",
 	"7ft 0in (213cm)",
 	"more than 7ft (213cm)"
-];
+]
+
+let HEIGHTVALUES = [
+	47,
+	48,
+	49,
+	50,
+	51,
+	52,
+	53,
+	54,
+	55,
+	56,
+	57,
+	58,
+	59,
+	60,
+	61,
+	62,
+	63,
+	64,
+	65,
+	66,
+	67,
+	68,
+	69,
+	70,
+	71,
+	72,
+	73,
+	74,
+	75,
+	76,
+	77,
+	78,
+	79,
+	80,
+	81,
+	82,
+	83,
+	84,
+	85
+]
 
 let WEIGHTOPTIONS = [
 	"below 80 lbs (below 36 kg)",
@@ -225,9 +267,63 @@ let WEIGHTOPTIONS = [
 	"above 300 lbs (above 136 kg)"
 ]
 
+let WEIGHTVALUES = [
+	80,
+	83,
+	88,
+	93,
+	98,
+	103,
+	108,
+	113,
+	118,
+	123,
+	128,
+	133,
+	138,
+	143,
+	148,
+	153,
+	158,
+	163,
+	168,
+	173,
+	178,
+	183,
+	188,
+	193,
+	198,
+	203,
+	208,
+	213,
+	218,
+	223,
+	228,
+	233,
+	238,
+	243,
+	248,
+	253,
+	258,
+	263,
+	268,
+	273,
+	278,
+	283,
+	288,
+	293,
+	298,
+	300
+]
+
 let RELATIONSHIPSTATUSOPTIONS = [
-	"Single",
-	"In a relationship"
+	"In a committed relationship",
+	"Not in a committed relationship"
+]
+
+let RELATIONSHIPSTATUSVALUES = [
+	1,
+	2
 ]
 
 let MARITALSTATUSOPTIONS = [
@@ -240,6 +336,16 @@ let MARITALSTATUSOPTIONS = [
 	"Widowed & Remarried"
 ]
 
+let MARITALSTATUSVALUES = [
+	1,
+	2,
+	7,
+	3,
+	4,
+	5,
+	6
+]
+
 let EXERCISEOPTIONS = [
 	"Very rarely or never",
 	"Less than once a month",
@@ -247,6 +353,15 @@ let EXERCISEOPTIONS = [
 	"1 or 2 times a week",
 	"3 to 5 times a week",
 	"More than 5 times a week"
+]
+
+let EXERCISEVALUES = [
+	1,
+	2,
+	3,
+	4,
+	5,
+	6
 ]
 
 let SMOKINGOPTIONS = [
@@ -259,6 +374,18 @@ let SMOKINGOPTIONS = [
 	"Everyday (5 or less times)",
 	"Up to 20 times a day",
 	"More than 20 times a day"
+]
+
+let SMOKINGVALUES = [
+	1,
+	2,
+	3,
+	4,
+	5,
+	6,
+	7,
+	8,
+	9
 ]
 
 let COUNTRYOPTIONS = [
@@ -311,7 +438,6 @@ let COUNTRYOPTIONS = [
 	"Colombia",
 	"Comoros",
 	"Congo (The Democratic Republic of the Congo)",
-	"Congo (The Republic of the Congo)",
 	"Cook Islands",
 	"Costa Rica",
 	"Croatia",
@@ -497,7 +623,8 @@ let COUNTRYOPTIONS = [
 	"Western Sahara",
 	"Yemen",
 	"Zambia",
-	"Zimbabwe"
+	"Zimbabwe",
+	"Congo (The Republic of the Congo)"
 ]
 
 let STATEOPTIONS = [
