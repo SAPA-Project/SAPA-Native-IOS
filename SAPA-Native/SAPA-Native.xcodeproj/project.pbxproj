@@ -16,6 +16,7 @@
 		85795B3B1A0183E500A6901B /* PhotoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */; };
 		85795B3D1A01855400A6901B /* cancel-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 85795B3C1A01855400A6901B /* cancel-black.png */; };
 		85795B3F1A01900300A6901B /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B3E1A01900300A6901B /* CollectionViewController.swift */; };
+		85795B491A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B481A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift */; };
 		8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8583856A19E5D5F70016E064 /* UserSettingsModel.swift */; };
 		85A6B43519E471130077E603 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B43419E471130077E603 /* Constants.swift */; };
 		85C38ACC19EEEC55008BA9FB /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C38ACB19EEEC55008BA9FB /* QuestionsViewController.swift */; };
@@ -72,6 +73,7 @@
 		85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryViewController.swift; sourceTree = "<group>"; };
 		85795B3C1A01855400A6901B /* cancel-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-black.png"; sourceTree = "<group>"; };
 		85795B3E1A01900300A6901B /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		85795B481A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8583856A19E5D5F70016E064 /* UserSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
 		85A6B43419E471130077E603 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		85C38ACB19EEEC55008BA9FB /* QuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				85F8FBBC19EDC0E20062FD52 /* Functions.swift */,
 				85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */,
 				85795B3E1A01900300A6901B /* CollectionViewController.swift */,
+				85795B481A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift */,
 			);
 			path = "SAPA-Native";
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */,
+				85795B491A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift in Sources */,
 				850A05E319E5BC7E003CEBBF /* MenuViewController.swift in Sources */,
 				85795B3B1A0183E500A6901B /* PhotoLibraryViewController.swift in Sources */,
 				8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */,
@@ -545,7 +549,7 @@
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "17aefadb-0fc3-4e5d-878d-c234db6d11c5";
+				PROVISIONING_PROFILE = "3f5d9c37-bcd8-4852-9450-0f0ee67406de";
 				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -563,7 +567,7 @@
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "17aefadb-0fc3-4e5d-878d-c234db6d11c5";
+				PROVISIONING_PROFILE = "3f5d9c37-bcd8-4852-9450-0f0ee67406de";
 				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 			};
 			name = Release;

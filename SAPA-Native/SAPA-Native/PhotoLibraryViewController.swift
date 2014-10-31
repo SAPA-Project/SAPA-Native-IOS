@@ -18,6 +18,9 @@ class PhotoLibraryViewController: UIViewController {
     @IBOutlet var titlebarTitle: UILabel!
 
     @IBOutlet var collectionView: UICollectionView!
+    var collectionViewFlowLayout: UICollectionViewFlowLayout!
+
+    var myPhotos: NSArray!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,9 @@ class PhotoLibraryViewController: UIViewController {
         let screenHeight = Double(screenRect.size.height)
         viewWidth = screenWidth
         viewHeight = screenHeight
+
+        //Set photos array
+        myPhotos = ["michael.png", "man-with-son.png", "clinic.png", "john.png", "chris.png", "facebook.png", "sagrada.png"]
 
         //Initialize elements
         initializeTitlebar()
@@ -83,6 +89,8 @@ class PhotoLibraryViewController: UIViewController {
 
     func initializeCollectionView() {
 
+        collectionViewFlowLayout = UICollectionViewFlowLayout()
+
         let collectionViewTopConstant = CGFloat(64.0)
         let collectionViewHeight = CGFloat(viewHeight - 64.0)
         let collectionViewWidth = CGFloat(viewWidth)
@@ -93,24 +101,33 @@ class PhotoLibraryViewController: UIViewController {
         let collectionViewWidthConstraint = NSLayoutConstraint(item: collectionView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.0, constant: collectionViewWidth)
         view.addConstraints([collectionViewCenterXConstraint, collectionViewTopConstraint, collectionViewHeightConstraint, collectionViewWidthConstraint])
 
+        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionViewFlowLayout.itemSize = CGSizeMake(CGFloat(viewWidth/4), CGFloat(viewWidth/4))
+        collectionViewFlowLayout.minimumInteritemSpacing = CGFloat(0.0)
+        collectionViewFlowLayout.minimumLineSpacing = CGFloat(0.0)
+
+        collectionView.setCollectionViewLayout(collectionViewFlowLayout, animated: true)
+
     }
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
-        return 0
-    }
 
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 0
+        return myPhotos.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as UICollectionViewCell
-    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoLibraryCell", forIndexPath: indexPath) as PhotoLibraryCollectionViewCell
+        
+        var imageView = UIImageView()
+        imageView.frame = CGRectMake(0, 0, collectionViewFlowLayout.itemSize.width, collectionViewFlowLayout.itemSize.height)
+        cell.addSubview(imageView)
+        cell.imageView = imageView
+
+        cell.imageView.image = UIImage(named: myPhotos[indexPath.row] as String)
         // Configure the cell
     
         return cell
@@ -146,6 +163,8 @@ class PhotoLibraryViewController: UIViewController {
     
     }
     */
+
+
 
     @IBAction func cancel() {
         self.dismissViewControllerAnimated(true, completion: nil)

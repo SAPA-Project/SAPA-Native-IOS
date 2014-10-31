@@ -301,10 +301,6 @@ class LoginScreenViewController: UIViewController {
         var rootViewController = newNavigationController.viewControllers[0] as MenuViewController
         rootViewController.userSettings = userSettings
         self.presentViewController(newNavigationController, animated: true, completion: nil)
-
-        var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-
-        appDelegate.window!.rootViewController = newNavigationController
         
         rootViewController.viewLoadedAfterLogin = true
            

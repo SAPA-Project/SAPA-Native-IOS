@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var userSettings: PFObject!
 
@@ -32,10 +32,17 @@ class MenuViewController: UIViewController {
     
     var viewLoadedAfterLogin: Bool!
 
+    var photoLibraryPicker: UIImagePickerController!
+    var cameraPicker: UIImagePickerController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+        //Set as root view controller
+        var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.window!.rootViewController = self.navigationController?
 
         //Get screen size
         let screenRect = view.bounds
@@ -67,6 +74,9 @@ class MenuViewController: UIViewController {
                 if error == nil {
                     
                     self.userSettings = user
+
+                    self.loadProfilePicture()
+
                     self.checkForAlert()
 
                     self.viewLoadedAfterLogin = true
@@ -85,18 +95,34 @@ class MenuViewController: UIViewController {
         }
         
         else {
+            loadProfilePicture()
             if viewLoadedAfterLogin != nil {
                 checkForAlert()
             }
-        }
-        
-    
+        }  
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func loadProfilePicture() {
+        if self.userSettings["profilePicture"] != nil {
+            let userProfilePicture = self.userSettings["profilePicture"] as PFFile
+            userProfilePicture.getDataInBackgroundWithBlock {
+                (imageData: NSData!, error: NSError!) -> Void in
+                if error == nil {
+                    let image = UIImage(data:imageData)
+                    self.profilePicture.image = image
+                }
+            }
+        }
+        else {
+            let addAvatarImage = UIImage(named: "add-photo.png")
+            self.profilePicture.image = addAvatarImage
+        }
     }
     
     func initializeButtons() {
@@ -241,13 +267,30 @@ class MenuViewController: UIViewController {
     func didTapImageView() {
         var addProfilePictureActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         addProfilePictureActionSheet.addAction(UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: { action in
-            let photoLibraryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoLibraryViewController") as PhotoLibraryViewController
-            photoLibraryViewController.modalPresentationStyle = .Popover
-            self.presentViewController(photoLibraryViewController, animated: true, completion: nil)   
+            self.photoLibraryPicker = UIImagePickerController()
+            self.photoLibraryPicker.delegate = self
+            self.photoLibraryPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            self.presentViewController(self.photoLibraryPicker, animated: true, completion: nil)
         }))
-        addProfilePictureActionSheet.addAction(UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default, handler: nil))
+        addProfilePictureActionSheet.addAction(UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default, handler: { action in
+            self.cameraPicker = UIImagePickerController()
+            self.cameraPicker.delegate = self
+            self.cameraPicker.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(self.cameraPicker, animated: true, completion: nil)
+        }))
         addProfilePictureActionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(addProfilePictureActionSheet, animated: true, completion: nil)
+    }
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        let profileImage = squareImageFromImage(info[UIImagePickerControllerOriginalImage] as UIImage, profilePicture.bounds.height)
+        profilePicture.image = profileImage
+        self.dismissViewControllerAnimated(true, completion: nil)
+
+        let imageData = UIImagePNGRepresentation(profileImage)
+        let imageFile = PFFile(name:"profilePicture.png", data: imageData)
+        userSettings["profilePicture"] = imageFile
+        userSettings.saveInBackground()
     }
 
     /*

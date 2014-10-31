@@ -27,3 +27,45 @@ func shuffle<T>(var list: Array<T>) -> Array<T> {
     }
     return list
 }
+
+func squareImageFromImage(image: UIImage, newSize: CGFloat) -> UIImage {
+    
+    var scaleTransform: CGAffineTransform
+    var origin: CGPoint
+
+    if (image.size.width > image.size.height) {
+        var scaleRatio = CGFloat(newSize / image.size.height)
+        scaleTransform = CGAffineTransformMakeScale(scaleRatio, scaleRatio)
+		origin = CGPointMake(-(image.size.width - image.size.height) / 2.0, 0)
+    } 
+    else {
+        var scaleRatio = CGFloat(newSize / image.size.width)
+        scaleTransform = CGAffineTransformMakeScale(scaleRatio, scaleRatio)
+        origin = CGPointMake(0, -(image.size.height - image.size.width) / 2.0)
+    }
+
+    var size = CGSizeMake(newSize, newSize)
+    if UIScreen.mainScreen().respondsToSelector("scale") {
+    	UIGraphicsBeginImageContextWithOptions(size, true, 0)	
+    }
+    else {
+    	UIGraphicsBeginImageContext(size)
+    }
+    // if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+    //     UIGraphicsBeginImageContextWithOptions(size, true, 0);
+    // } else {
+    //     UIGraphicsBeginImageContext(size);
+    // }
+
+    var context = UIGraphicsGetCurrentContext() as CGContextRef
+    CGContextConcatCTM(context, scaleTransform)
+
+    image.drawAtPoint(origin)
+
+    var newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+    UIGraphicsEndImageContext()
+
+    return newImage;
+
+}
