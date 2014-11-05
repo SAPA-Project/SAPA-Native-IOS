@@ -381,6 +381,9 @@ class SettingsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
             NSLog("Logging out...")
+            //log out facebook:
+            FBSession.activeSession().closeAndClearTokenInformation()
+            //log out:
             PFUser.logOut()
             self.view.endEditing(true)      
             //Prepare new view controller

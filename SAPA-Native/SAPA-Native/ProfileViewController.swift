@@ -37,6 +37,9 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     var countryTextField: UITextField!
     var stateTextField: UITextField!
 
+    var facebookSwitch: UISwitch!
+    var twitterSwitch: UISwitch!
+
     var pickerView: UIPickerView!
     var pickerData: NSArray!
 
@@ -226,6 +229,63 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         zipcodeTextField.delegate = self
 
         zipcodeCell.addSubview(zipcodeTextField)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //facebook
+        var facebookCell = UIView()
+        facebookCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(facebookCell)
+
+        let facebookLabelLeadingConstant = CGFloat(85.0)
+        let facebookLabelTopConstant = CGFloat(22.0)
+        let facebookLabelWidth = CGFloat(100.0)
+        let facebookLabelHeight = CGFloat(21.0)
+
+        var facebookLabel = UILabel()
+        facebookLabel.frame = CGRectMake(facebookLabelLeadingConstant, facebookLabelTopConstant, facebookLabelWidth, facebookLabelHeight)
+        facebookLabel.text = "Facebook"
+        facebookLabel.textColor = UIColor(red: 59.0/255.0, green: 89.0/255.0, blue: 152.0/255.0, alpha: 1.0)
+
+        facebookCell.addSubview(facebookLabel)
+
+        let switchLeadingConstant = CGFloat(viewWidth - 80 - 51)
+        let switchTopConstant = CGFloat(17.0)
+        let switchWidth = CGFloat(51.0)
+        let switchHeight = CGFloat(31.0)
+
+        facebookSwitch = UISwitch()
+        facebookSwitch.frame = CGRectMake(switchLeadingConstant, switchTopConstant, switchWidth, switchHeight)
+        facebookSwitch.on = userSettings["facebookConnected"] as Bool
+        facebookSwitch.addTarget(self, action: "didToggleFacebookSwitch", forControlEvents: .ValueChanged)
+
+        facebookCell.addSubview(facebookSwitch)
+
+        currentListItemHeight = currentListItemHeight + cellHeight
+
+        //twitter
+        var twitterCell = UIView()
+        twitterCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        scrollView.addSubview(twitterCell)
+
+        let twitterLabelLeadingConstant = CGFloat(85.0)
+        let twitterLabelTopConstant = CGFloat(22.0)
+        let twitterLabelWidth = CGFloat(100.0)
+        let twitterLabelHeight = CGFloat(21.0)
+
+        var twitterLabel = UILabel()
+        twitterLabel.frame = CGRectMake(twitterLabelLeadingConstant, twitterLabelTopConstant, twitterLabelWidth, twitterLabelHeight)
+        twitterLabel.text = "Twitter"
+        twitterLabel.textColor = UIColor(red: 0.0/255.0, green: 172.0/255.0, blue: 237.0/255.0, alpha: 1.0)
+
+        twitterCell.addSubview(twitterLabel)
+
+        twitterSwitch = UISwitch()
+        twitterSwitch.frame = CGRectMake(switchLeadingConstant, switchTopConstant, switchWidth, switchHeight)
+        twitterSwitch.on = userSettings["twitterConnected"] as Bool
+        twitterSwitch.addTarget(self, action: "didToggleTwitterSwitch", forControlEvents: .ValueChanged)
+
+        twitterCell.addSubview(twitterSwitch)
 
         currentListItemHeight = currentListItemHeight + cellHeight
 
@@ -435,6 +495,37 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     func genderButtonChange() {
         let gender = genderButton.titleForSegmentAtIndex(genderButton.selectedSegmentIndex)
         userSettings["gender"] = gender
+        userSettings.saveInBackground()
+    }
+
+    func didToggleFacebookSwitch() {
+        let facebookSwitchState = facebookSwitch.on
+        userSettings["facebookConnected"] = facebookSwitchState
+        userSettings.saveInBackground()
+
+        if facebookSwitchState {
+            // Open a session showing the user the login UI
+            // You must ALWAYS ask for public_profile permissions when opening a session
+            var permissions = ["public_profile"]
+            var controller = self
+            FBSession.openActiveSessionWithReadPermissions(permissions, allowLoginUI: true, completionHandler: {
+                (session: FBSession!, state: FBSessionState!, error: NSError!) -> Void in
+
+                // Retrieve the app delegate
+                var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+                appDelegate.sessionStateChanged(session, state: state, error: error)
+
+            })
+        }
+        else {
+            FBSession.activeSession().closeAndClearTokenInformation()
+        }
+    }
+
+    func didToggleTwitterSwitch() {
+        let twitterSwitchState = facebookSwitch.on
+        userSettings["twitterConnected"] = twitterSwitchState
         userSettings.saveInBackground()
     }
 

@@ -27,7 +27,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
 
+        //Facebook:
+        FBLoginView.self
+        FBProfilePictureView.self
+        // Whenever a person opens the app, check for a cached session
+        if FBSession.activeSession().state == FBSessionState.CreatedTokenLoaded {
+        // If there's one, just open the session silently, without showing the user the login UI
+            var permissions = ["public_profile"]
+            FBSession.openActiveSessionWithReadPermissions(permissions, allowLoginUI: false, completionHandler: {
+                (session: FBSession!, state: FBSessionState!, error: NSError!) -> Void in
+
+                // Retrieve the app delegate
+                var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+                appDelegate.sessionStateChanged(session, state: state, error: error)
+
+            })
+        }
+
         return true
+    }
+
+    //Facebook:
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
+        var wasHandled:Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
+        return wasHandled
     }
     
     func application(application: UIApplication!, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!) {
@@ -92,6 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let currentViewController = currentNavigationController.visibleViewController
             if currentViewController.isKindOfClass(MenuViewController) {
                 let menuViewController = currentViewController as MenuViewController
+                menuViewController.validateFacebookSession()
                 menuViewController.checkForAlert()
             }
         }
@@ -163,6 +188,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSLog("Unresolved error \(error), \(error!.userInfo)")
                 abort()
             }
+        }
+    }
+
+    // Facebook session handler
+
+    func sessionStateChanged(session: FBSession, state: FBSessionState, error: NSError!) {
+          // If the session was opened successfully
+        if error == nil && state == FBSessionState.Open {
+            NSLog("Session opened");
+            // Show the user the logged-in UI
+//            self.userLoggedIn()
+            return
+        }
+        if state == FBSessionState.Closed || state == FBSessionState.ClosedLoginFailed {
+            // If the session is closed
+            NSLog("Session closed");
+            // Show the user the logged-out UI
+//            self.userLoggedOut()
+        }
+
+          // Handle errors
+        if error != nil {
+            NSLog("Error");
+            var alertText = NSString()
+            var alertTitle = NSString()
+            // If the error requires people using an app to make an action outside of the app in order to recover
+            if FBErrorUtility.shouldNotifyUserForError(error) == true {
+                alertTitle = "Something went wrong"
+                NSLog("%@", FBErrorUtility.userMessageForError(error))
+//                self.showMessage(alertText, withTitle: alertTitle)
+            }
+            else {
+
+                // If the user cancelled login, do nothing
+                if FBErrorUtility.errorCategoryForError(error) == FBErrorCategory.UserCancelled {
+                    NSLog("User cancelled login")
+                }
+                else if FBErrorUtility.errorCategoryForError(error) == FBErrorCategory.AuthenticationReopenSession {
+                    alertTitle = "Session Error"
+                    NSLog("Your current session is no longer valid. Please log in again.")
+//                    self.showMessage(alertText, withTitle: alertTitle)
+                }
+                else {
+//                    var errorInformation = NSDictionary(error.userInfo).objectForKey("com.facebook.sdk:ParsedJSONResponseKey").objectForKey("body").objectForKey("error") as NSDictionary
+                    // Show the user an error message
+                    NSLog("Something went wrong")
+//                    alertText = NSString.stringWithFormat("Please retry. \n\n If the problem persists contact us and mention this error code: %@", errorInformation.objectForKey("message"))
+//                    self.showMessage(alertText, withTitle: alertTitle)
+                }
+
+            }
+            // Clear this token
+            FBSession.activeSession().closeAndClearTokenInformation()
+//            self.userLoggedOut()
         }
     }
 

@@ -18,6 +18,7 @@
 		85795B3F1A01900300A6901B /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B3E1A01900300A6901B /* CollectionViewController.swift */; };
 		85795B491A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B481A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift */; };
 		8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8583856A19E5D5F70016E064 /* UserSettingsModel.swift */; };
+		85838CD01A0AA63D003835B3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85838CCF1A0AA63D003835B3 /* FacebookSDK.framework */; };
 		85A6B43519E471130077E603 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B43419E471130077E603 /* Constants.swift */; };
 		85C38ACC19EEEC55008BA9FB /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C38ACB19EEEC55008BA9FB /* QuestionsViewController.swift */; };
 		85C38ACE19EEF137008BA9FB /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C38ACD19EEF137008BA9FB /* cancel.png */; };
@@ -75,6 +76,7 @@
 		85795B3E1A01900300A6901B /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		85795B481A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8583856A19E5D5F70016E064 /* UserSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
+		85838CCF1A0AA63D003835B3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		85A6B43419E471130077E603 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		85C38ACB19EEEC55008BA9FB /* QuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		85C38ACD19EEF137008BA9FB /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				85F7660C19E3325800009758 /* libz.dylib in Frameworks */,
 				85F7660A19E3325200009758 /* CoreLocation.framework in Frameworks */,
 				85F7660819E3324B00009758 /* CoreGraphics.framework in Frameworks */,
+				85838CD01A0AA63D003835B3 /* FacebookSDK.framework in Frameworks */,
 				85F7660619E3324500009758 /* CFNetwork.framework in Frameworks */,
 				85F7660419E3324000009758 /* AudioToolbox.framework in Frameworks */,
 				85F7660219E3318100009758 /* Parse.framework in Frameworks */,
@@ -161,6 +164,26 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		85838CCE1A0AA607003835B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85838CCF1A0AA63D003835B3 /* FacebookSDK.framework */,
+				85F7661319E3327900009758 /* SystemConfiguration.framework */,
+				85F7661119E3327100009758 /* StoreKit.framework */,
+				85F7660F19E3326B00009758 /* Security.framework */,
+				85F7660D19E3325E00009758 /* MobileCoreServices.framework */,
+				85F7660B19E3325800009758 /* libz.dylib */,
+				85F7660919E3325200009758 /* CoreLocation.framework */,
+				85F7660719E3324B00009758 /* CoreGraphics.framework */,
+				85F7660519E3324500009758 /* CFNetwork.framework */,
+				85F7660319E3324000009758 /* AudioToolbox.framework */,
+				85F765FF19E3318100009758 /* Bolts.framework */,
+				85F7660019E3318100009758 /* Parse.framework */,
+				85E3C21119DCEBB600DFDB05 /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		85C38ACA19EEEC3F008BA9FB /* Questions */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,18 +203,7 @@
 		85E3C1D619DC666200DFDB05 = {
 			isa = PBXGroup;
 			children = (
-				85F7661319E3327900009758 /* SystemConfiguration.framework */,
-				85F7661119E3327100009758 /* StoreKit.framework */,
-				85F7660F19E3326B00009758 /* Security.framework */,
-				85F7660D19E3325E00009758 /* MobileCoreServices.framework */,
-				85F7660B19E3325800009758 /* libz.dylib */,
-				85F7660919E3325200009758 /* CoreLocation.framework */,
-				85F7660719E3324B00009758 /* CoreGraphics.framework */,
-				85F7660519E3324500009758 /* CFNetwork.framework */,
-				85F7660319E3324000009758 /* AudioToolbox.framework */,
-				85F765FF19E3318100009758 /* Bolts.framework */,
-				85F7660019E3318100009758 /* Parse.framework */,
-				85E3C21119DCEBB600DFDB05 /* QuartzCore.framework */,
+				85838CCE1A0AA607003835B3 /* Frameworks */,
 				85E3C1E119DC666200DFDB05 /* SAPA-Native */,
 				85E3C1FA19DC666200DFDB05 /* SAPA-NativeTests */,
 				85E3C1E019DC666200DFDB05 /* Products */,
@@ -495,7 +507,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "17aefadb-0fc3-4e5d-878d-c234db6d11c5";
+				PROVISIONING_PROFILE = "1990e7be-c07b-437e-82fc-d634792db91d";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -531,7 +543,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "17aefadb-0fc3-4e5d-878d-c234db6d11c5";
+				PROVISIONING_PROFILE = "1990e7be-c07b-437e-82fc-d634792db91d";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -545,11 +557,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/brianlai/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3f5d9c37-bcd8-4852-9450-0f0ee67406de";
+				PROVISIONING_PROFILE = "1990e7be-c07b-437e-82fc-d634792db91d";
 				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -563,11 +576,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/brianlai/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3f5d9c37-bcd8-4852-9450-0f0ee67406de";
+				PROVISIONING_PROFILE = "1990e7be-c07b-437e-82fc-d634792db91d";
 				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 			};
 			name = Release;

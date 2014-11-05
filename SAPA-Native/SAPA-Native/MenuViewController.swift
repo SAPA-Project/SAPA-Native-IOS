@@ -75,6 +75,8 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     
                     self.userSettings = user
 
+                    self.validateFacebookSession()
+
                     self.loadProfilePicture()
 
                     self.checkForAlert()
@@ -95,6 +97,7 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
         else {
+            checkForFacebookSession()
             loadProfilePicture()
             if viewLoadedAfterLogin != nil {
                 checkForAlert()
@@ -106,6 +109,35 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func checkForFacebookSession() {
+        NSLog("checking facebook session...")
+        if userSettings["facebookConnected"] as Bool == true {
+            NSLog("opening session...")
+            var permissions = ["public_profile"]
+            FBSession.openActiveSessionWithReadPermissions(permissions, allowLoginUI: true, completionHandler: {
+                (session: FBSession!, state: FBSessionState!, error: NSError!) -> Void in
+
+                // Retrieve the app delegate
+                var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+                appDelegate.sessionStateChanged(session, state: state, error: error)
+            })
+        }
+    }
+
+    func validateFacebookSession() {
+        if FBSession.activeSession() != nil {
+            if userSettings["facebookConnected"] as Bool == true && FBSession.activeSession().state != FBSessionState.Open {
+                userSettings["facebookConnected"] = false
+                userSettings.saveInBackground()
+            }
+        }
+        else {
+            userSettings["facebookConnected"] = false
+            userSettings.saveInBackground()
+        }
     }
 
     func loadProfilePicture() {
