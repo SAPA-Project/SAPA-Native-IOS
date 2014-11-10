@@ -115,7 +115,7 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         NSLog("checking facebook session...")
         if userSettings["facebookConnected"] as Bool == true {
             NSLog("opening session...")
-            var permissions = ["public_profile"]
+            var permissions = ["public_profile","user_friends","email","user_about_me","user_actions.books","user_actions.fitness","user_actions.music","user_actions.news","user_actions.video","user_activities","user_birthday","user_education_history","user_events","user_games_activity","user_groups","user_hometown","user_interests","user_likes","user_location","user_relationships","user_relationship_details","user_religion_politics","user_status","user_tagged_places","user_work_history"]
             FBSession.openActiveSessionWithReadPermissions(permissions, allowLoginUI: true, completionHandler: {
                 (session: FBSession!, state: FBSessionState!, error: NSError!) -> Void in
 
@@ -128,15 +128,17 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
 
     func validateFacebookSession() {
-        if FBSession.activeSession() != nil {
-            if userSettings["facebookConnected"] as Bool == true && FBSession.activeSession().state != FBSessionState.Open {
+        if userSettings != nil {
+            if FBSession.activeSession() != nil {
+                if userSettings["facebookConnected"] as Bool == true && FBSession.activeSession().state != FBSessionState.Open {
+                    userSettings["facebookConnected"] = false
+                    userSettings.saveInBackground()
+                }
+            }
+            else {
                 userSettings["facebookConnected"] = false
                 userSettings.saveInBackground()
             }
-        }
-        else {
-            userSettings["facebookConnected"] = false
-            userSettings.saveInBackground()
         }
     }
 
@@ -369,6 +371,19 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
         }
 
+    }
+
+    @IBAction func getFacebookData() {
+        // FBRequestConnection.startForMeWithCompletionHandler({
+        //     (connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
+        //     if error != nil {
+        //         NSLog("error occurred")
+        //     }
+        //     else {
+        //         var resultDict = result as NSDictionary
+        //         println("result dict: \(resultDict)")
+        //     }
+        // })
     }
 
     func showQuestionsView() {

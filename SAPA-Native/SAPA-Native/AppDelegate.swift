@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Whenever a person opens the app, check for a cached session
         if FBSession.activeSession().state == FBSessionState.CreatedTokenLoaded {
         // If there's one, just open the session silently, without showing the user the login UI
-            var permissions = ["public_profile"]
+            var permissions = ["public_profile","user_friends","email","user_about_me","user_actions.books","user_actions.fitness","user_actions.music","user_actions.news","user_actions.video","user_activities","user_birthday","user_education_history","user_events","user_games_activity","user_groups","user_hometown","user_interests","user_likes","user_location","user_relationships","user_relationship_details","user_religion_politics","user_status","user_tagged_places","user_work_history"]
             FBSession.openActiveSessionWithReadPermissions(permissions, allowLoginUI: false, completionHandler: {
                 (session: FBSession!, state: FBSessionState!, error: NSError!) -> Void in
 
@@ -120,6 +120,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 menuViewController.checkForAlert()
             }
         }
+
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        if currentInstallation["badge"] as Int != 0 {
+            currentInstallation["badge"] = 0
+            currentInstallation.saveInBackground()
+        }
+
     }
 
     func applicationWillTerminate(application: UIApplication) {

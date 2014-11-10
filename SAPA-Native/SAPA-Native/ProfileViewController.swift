@@ -188,19 +188,31 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
     func initializeTextFields() {
 
-        let cellHeight = CGFloat(65.0)
+        let cellHeight = CGFloat(90.0)
         let cellWidth = CGFloat(viewWidth)
         
         var ageCell = UIView()
         ageCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(ageCell)
 
+        let labelLeadingConstant = CGFloat((viewWidth - 230)/2)
+        let labelTopConstant = CGFloat(10.0)
+        let labelWidth = CGFloat(230.0)
+        let labelHeight = CGFloat(21.0)
+
         let textFieldLeadingConstant = CGFloat((viewWidth - 230)/2)
-        let textFieldTopConstant = CGFloat(13.0)
+        let textFieldTopConstant = CGFloat(41.0)
         let textFieldHeight = CGFloat(39.0)
         let textFieldWidth = CGFloat(230.0)
         
         //age
+        var ageLabel = UILabel()
+        ageLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        ageLabel.text = "Age:"
+        ageLabel.textAlignment = .Center
+
+        ageCell.addSubview(ageLabel)
+
         ageTextField = UITextField()
         ageTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         ageTextField.layer.borderWidth = 1.0
@@ -219,6 +231,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         zipcodeCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(zipcodeCell)
 
+        var zipcodeLabel = UILabel()
+        zipcodeLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        zipcodeLabel.text = "Zipcode:"
+        zipcodeLabel.textAlignment = .Center
+
+        zipcodeCell.addSubview(zipcodeLabel)
+
         zipcodeTextField = UITextField()
         zipcodeTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         zipcodeTextField.layer.borderWidth = 1.0
@@ -234,7 +253,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
         //facebook
         var facebookCell = UIView()
-        facebookCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        facebookCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, 65.0)
         scrollView.addSubview(facebookCell)
 
         let facebookLabelLeadingConstant = CGFloat(85.0)
@@ -265,7 +284,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
         //twitter
         var twitterCell = UIView()
-        twitterCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
+        twitterCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, 65.0)
         scrollView.addSubview(twitterCell)
 
         let twitterLabelLeadingConstant = CGFloat(85.0)
@@ -294,6 +313,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         heightCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(heightCell)
 
+        var heightLabel = UILabel()
+        heightLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        heightLabel.text = "Height:"
+        heightLabel.textAlignment = .Center
+
+        heightCell.addSubview(heightLabel)
+
         heightTextField = UITextField()
         heightTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         heightTextField.layer.borderWidth = 1.0
@@ -311,6 +337,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         var weightCell = UIView()
         weightCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(weightCell)
+
+        var weightLabel = UILabel()
+        weightLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        weightLabel.text = "Weight:"
+        weightLabel.textAlignment = .Center
+
+        weightCell.addSubview(weightLabel)
 
         weightTextField = UITextField()
         weightTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
@@ -330,6 +363,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         maritalStatusCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(maritalStatusCell)
 
+        var maritalStatusLabel = UILabel()
+        maritalStatusLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        maritalStatusLabel.text = "Marital Status:"
+        maritalStatusLabel.textAlignment = .Center
+
+        maritalStatusCell.addSubview(maritalStatusLabel)
+
         maritalStatusTextField = UITextField()
         maritalStatusTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         maritalStatusTextField.layer.borderWidth = 1.0
@@ -347,6 +387,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         var relationshipStatusCell = UIView()
         relationshipStatusCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(relationshipStatusCell)
+
+        var relationshipStatusLabel = UILabel()
+        relationshipStatusLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        relationshipStatusLabel.text = "Relationship Status:"
+        relationshipStatusLabel.textAlignment = .Center
+
+        relationshipStatusCell.addSubview(relationshipStatusLabel)
 
         relationshipStatusTextField = UITextField()
         relationshipStatusTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
@@ -366,6 +413,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         exerciseCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(exerciseCell)
 
+        var exerciseLabel = UILabel()
+        exerciseLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        exerciseLabel.text = "Exercise Frequency:"
+        exerciseLabel.textAlignment = .Center
+
+        exerciseCell.addSubview(exerciseLabel)
+
         exerciseTextField = UITextField()
         exerciseTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         exerciseTextField.layer.borderWidth = 1.0
@@ -383,6 +437,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         var smokingCell = UIView()
         smokingCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(smokingCell)
+
+        var smokingLabel = UILabel()
+        smokingLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        smokingLabel.text = "Smoking Frequency:"
+        smokingLabel.textAlignment = .Center
+
+        smokingCell.addSubview(smokingLabel)
 
         smokingTextField = UITextField()
         smokingTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
@@ -402,6 +463,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         countryCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(countryCell)
 
+        var countryLabel = UILabel()
+        countryLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        countryLabel.text = "Country:"
+        countryLabel.textAlignment = .Center
+
+        countryCell.addSubview(countryLabel)
+
         countryTextField = UITextField()
         countryTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
         countryTextField.layer.borderWidth = 1.0
@@ -419,6 +487,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         var stateCell = UIView()
         stateCell.frame = CGRectMake(0, currentListItemHeight, cellWidth, cellHeight)
         scrollView.addSubview(stateCell)
+
+        var stateLabel = UILabel()
+        stateLabel.frame = CGRectMake(labelLeadingConstant, labelTopConstant, labelWidth, labelHeight)
+        stateLabel.text = "State:"
+        stateLabel.textAlignment = .Center
+
+        stateCell.addSubview(stateLabel)
 
         stateTextField = UITextField()
         stateTextField.frame = CGRectMake(textFieldLeadingConstant, textFieldTopConstant, textFieldWidth, textFieldHeight)
@@ -506,7 +581,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         if facebookSwitchState {
             // Open a session showing the user the login UI
             // You must ALWAYS ask for public_profile permissions when opening a session
-            var permissions = ["public_profile"]
+            var permissions = ["public_profile","user_friends","email","user_about_me","user_actions.books","user_actions.fitness","user_actions.music","user_actions.news","user_actions.video","user_activities","user_birthday","user_education_history","user_events","user_games_activity","user_groups","user_hometown","user_interests","user_likes","user_location","user_relationships","user_relationship_details","user_religion_politics","user_status","user_tagged_places","user_work_history"]
             var controller = self
             FBSession.openActiveSessionWithReadPermissions(permissions, allowLoginUI: true, completionHandler: {
                 (session: FBSession!, state: FBSessionState!, error: NSError!) -> Void in

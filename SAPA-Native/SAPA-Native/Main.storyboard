@@ -39,6 +39,9 @@
                                 <state key="normal" title="           Stats">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="getFacebookData" destination="NwY-qz-EZz" eventType="touchUpInside" id="fFi-58-7S6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZoU-GJ-7Gb">
                                 <rect key="frame" x="50" y="390" width="221" height="58"/>
