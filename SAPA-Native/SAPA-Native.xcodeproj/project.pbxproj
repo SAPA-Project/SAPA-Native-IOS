@@ -507,7 +507,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "17aefadb-0fc3-4e5d-878d-c234db6d11c5";
+				PROVISIONING_PROFILE = "e4772270-4602-4b8d-9a6a-a051df2da8ec";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -543,7 +543,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "17aefadb-0fc3-4e5d-878d-c234db6d11c5";
+				PROVISIONING_PROFILE = "e4772270-4602-4b8d-9a6a-a051df2da8ec";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -562,7 +562,7 @@
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "17aefadb-0fc3-4e5d-878d-c234db6d11c5";
+				PROVISIONING_PROFILE = "e4772270-4602-4b8d-9a6a-a051df2da8ec";
 				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -581,7 +581,7 @@
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "17aefadb-0fc3-4e5d-878d-c234db6d11c5";
+				PROVISIONING_PROFILE = "e4772270-4602-4b8d-9a6a-a051df2da8ec";
 				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 			};
 			name = Release;

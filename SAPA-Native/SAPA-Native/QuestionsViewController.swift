@@ -187,6 +187,9 @@ class QuestionsViewController: UIViewController {
     }
     
     @IBAction func didTapNext() {
+
+        let currentInstallation:PFInstallation = PFInstallation.currentInstallation()
+        var timeZone = currentInstallation["timeZone"] as String
         
         var numQuestions = userSettings["questionsPerNotification"] as Int
         
@@ -201,6 +204,7 @@ class QuestionsViewController: UIViewController {
         userResponse["questionText"] = questionText
         userResponse["responseValue"] = sliderValue
         userResponse["questionType"] = questionType
+        userResponse["timeZone"] = timeZone
         userResponse.saveInBackground()
         
         if currentQuestionIndex == (numQuestions - 1) {
