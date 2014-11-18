@@ -198,7 +198,7 @@ class LoginScreenViewController: UIViewController {
             enableSignInButton()
         }
         else {
-            disableSignUpButton()
+            disableSignInButton()
         }
     }
 
@@ -207,7 +207,7 @@ class LoginScreenViewController: UIViewController {
         signInButton.enabled = true
     }
 
-    func disableSignUpButton() {
+    func disableSignInButton() {
         signInButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         signInButton.enabled = false
     }

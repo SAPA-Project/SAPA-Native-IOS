@@ -56,6 +56,9 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         initializeLabels()
         initializeIcons()
         initializeActivityIndicator()
+
+        //Camera fix:
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "cameraChanged:", name: "AVCaptureDeviceDidStartRunningNotification", object: nil)
         
         //Initialize elements:
         if userSettings == nil {
@@ -325,6 +328,16 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let imageFile = PFFile(name:"profilePicture.png", data: imageData)
         userSettings["profilePicture"] = imageFile
         userSettings.saveInBackground()
+    }
+
+    func cameraChanged(notification: NSNotification) {
+        if(cameraPicker.cameraDevice == .Front) {
+            cameraPicker.cameraViewTransform = CGAffineTransformIdentity;
+            cameraPicker.cameraViewTransform = CGAffineTransformScale(cameraPicker.cameraViewTransform, -1, 1)
+        } 
+        else {
+            cameraPicker.cameraViewTransform = CGAffineTransformIdentity
+        }
     }
 
     /*
