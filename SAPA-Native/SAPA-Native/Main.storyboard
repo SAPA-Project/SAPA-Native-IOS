@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="94j-x4-e3S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="94j-x4-e3S">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -40,7 +40,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="getFacebookData" destination="NwY-qz-EZz" eventType="touchUpInside" id="fFi-58-7S6"/>
+                                    <action selector="showStatsView" destination="NwY-qz-EZz" eventType="touchUpInside" id="zRo-pC-IJB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZoU-GJ-7Gb">
@@ -126,6 +126,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmz-6m-Asq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="665.625" y="-220.77464788732394"/>
+        </scene>
+        <!--Stats View Controller-->
+        <scene sceneID="87T-2a-G61">
+            <objects>
+                <viewController storyboardIdentifier="StatsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xsD-2j-N1m" customClass="StatsViewController" customModule="SAPA_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ji2-kN-IB2"/>
+                        <viewControllerLayoutGuide type="bottom" id="x5Y-wu-Y9a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zTQ-2i-FAr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w1x-Wg-aDa">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXf-RN-CIv">
+                                        <rect key="frame" x="1" y="22" width="41" height="41"/>
+                                        <state key="normal" backgroundImage="menu.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="navigateBack" destination="JQa-Hg-Ksn" eventType="touchUpInside" id="Htx-xS-fmj"/>
+                                            <action selector="navigateBack" destination="xsD-2j-N1m" eventType="touchUpInside" id="fJc-Xd-51V"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Stats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88T-kJ-DjV">
+                                        <rect key="frame" x="72" y="29" width="176" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="88T-kJ-DjV" secondAttribute="trailing" constant="72" placeholder="YES" id="3Aa-xn-HY4"/>
+                                    <constraint firstAttribute="bottom" secondItem="uXf-RN-CIv" secondAttribute="bottom" constant="5" placeholder="YES" id="KWq-QP-uZW"/>
+                                    <constraint firstAttribute="bottom" secondItem="88T-kJ-DjV" secondAttribute="bottom" constant="11" placeholder="YES" id="MVP-MH-I9B"/>
+                                    <constraint firstItem="88T-kJ-DjV" firstAttribute="centerX" secondItem="w1x-Wg-aDa" secondAttribute="centerX" placeholder="YES" id="OmX-VQ-Z72"/>
+                                    <constraint firstItem="88T-kJ-DjV" firstAttribute="leading" secondItem="uXf-RN-CIv" secondAttribute="trailing" constant="30" placeholder="YES" id="S5B-VH-aOT"/>
+                                    <constraint firstItem="uXf-RN-CIv" firstAttribute="leading" secondItem="w1x-Wg-aDa" secondAttribute="leading" constant="1" placeholder="YES" id="TOj-lR-jZu"/>
+                                    <constraint firstItem="uXf-RN-CIv" firstAttribute="top" secondItem="w1x-Wg-aDa" secondAttribute="top" constant="22" placeholder="YES" id="Xmh-8S-B8v"/>
+                                    <constraint firstItem="88T-kJ-DjV" firstAttribute="top" secondItem="w1x-Wg-aDa" secondAttribute="top" constant="29" placeholder="YES" id="rMt-rl-Wke"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="menuButton" destination="uXf-RN-CIv" id="kwi-F8-sUB"/>
+                        <outlet property="titlebar" destination="w1x-Wg-aDa" id="73Q-7x-gEh"/>
+                        <outlet property="titlebarTitle" destination="88T-kJ-DjV" id="OZD-Ko-v0e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="45U-TY-3cC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1089" y="-221"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="KnA-ZD-GvH">

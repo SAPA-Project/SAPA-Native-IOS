@@ -13,10 +13,7 @@
 		850A05E319E5BC7E003CEBBF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A05E219E5BC7E003CEBBF /* MenuViewController.swift */; };
 		854F597919E70EA000E24617 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 854F597819E70EA000E24617 /* menu.png */; };
 		854F597C19E7108F00E24617 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F597B19E7108F00E24617 /* ProfileViewController.swift */; };
-		85795B3B1A0183E500A6901B /* PhotoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */; };
 		85795B3D1A01855400A6901B /* cancel-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 85795B3C1A01855400A6901B /* cancel-black.png */; };
-		85795B3F1A01900300A6901B /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B3E1A01900300A6901B /* CollectionViewController.swift */; };
-		85795B491A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85795B481A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift */; };
 		8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8583856A19E5D5F70016E064 /* UserSettingsModel.swift */; };
 		85838CD01A0AA63D003835B3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85838CCF1A0AA63D003835B3 /* FacebookSDK.framework */; };
 		85A6B43519E471130077E603 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6B43419E471130077E603 /* Constants.swift */; };
@@ -40,6 +37,10 @@
 		85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21319DCF2DE00DFDB05 /* SlideRightSegue.swift */; };
 		85E3C21819DD41EC00DFDB05 /* SignUpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21719DD41EC00DFDB05 /* SignUpScreenViewController.swift */; };
 		85E3C21A19DDD72500DFDB05 /* InitialDemographicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3C21919DDD72500DFDB05 /* InitialDemographicsViewController.swift */; };
+		85F642F81A1E6D70007B0629 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F642F71A1E6D70007B0629 /* StatsViewController.swift */; };
+		85F643071A1E8F0E007B0629 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F643061A1E8F0E007B0629 /* OpenGLES.framework */; };
+		85F643091A1E8F17007B0629 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F643081A1E8F17007B0629 /* CoreText.framework */; };
+		85F6430B1A1E8F24007B0629 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F6430A1A1E8F24007B0629 /* libc++.dylib */; };
 		85F7660119E3318100009758 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F765FF19E3318100009758 /* Bolts.framework */; };
 		85F7660219E3318100009758 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660019E3318100009758 /* Parse.framework */; };
 		85F7660419E3324000009758 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F7660319E3324000009758 /* AudioToolbox.framework */; };
@@ -71,10 +72,7 @@
 		850A05E219E5BC7E003CEBBF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		854F597819E70EA000E24617 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		854F597B19E7108F00E24617 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryViewController.swift; sourceTree = "<group>"; };
 		85795B3C1A01855400A6901B /* cancel-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-black.png"; sourceTree = "<group>"; };
-		85795B3E1A01900300A6901B /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		85795B481A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8583856A19E5D5F70016E064 /* UserSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
 		85838CCF1A0AA63D003835B3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		85A6B43419E471130077E603 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -102,6 +100,11 @@
 		85E3C21319DCF2DE00DFDB05 /* SlideRightSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightSegue.swift; sourceTree = "<group>"; };
 		85E3C21719DD41EC00DFDB05 /* SignUpScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewController.swift; sourceTree = "<group>"; };
 		85E3C21919DDD72500DFDB05 /* InitialDemographicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialDemographicsViewController.swift; sourceTree = "<group>"; };
+		85F642F71A1E6D70007B0629 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		85F643041A1E8EDA007B0629 /* ShinobiCharts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShinobiCharts.framework; path = Library/Frameworks/ShinobiCharts.framework; sourceTree = DEVELOPER_DIR; };
+		85F643061A1E8F0E007B0629 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		85F643081A1E8F17007B0629 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		85F6430A1A1E8F24007B0629 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		85F765FF19E3318100009758 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		85F7660019E3318100009758 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		85F7660319E3324000009758 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -122,6 +125,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85F6430B1A1E8F24007B0629 /* libc++.dylib in Frameworks */,
+				85F643091A1E8F17007B0629 /* CoreText.framework in Frameworks */,
+				85F643071A1E8F0E007B0629 /* OpenGLES.framework in Frameworks */,
 				85F7661419E3327900009758 /* SystemConfiguration.framework in Frameworks */,
 				85F7661219E3327100009758 /* StoreKit.framework in Frameworks */,
 				85F7661019E3326B00009758 /* Security.framework in Frameworks */,
@@ -167,6 +173,10 @@
 		85838CCE1A0AA607003835B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85F6430A1A1E8F24007B0629 /* libc++.dylib */,
+				85F643081A1E8F17007B0629 /* CoreText.framework */,
+				85F643061A1E8F0E007B0629 /* OpenGLES.framework */,
+				85F643041A1E8EDA007B0629 /* ShinobiCharts.framework */,
 				85838CCF1A0AA63D003835B3 /* FacebookSDK.framework */,
 				85F7661319E3327900009758 /* SystemConfiguration.framework */,
 				85F7661119E3327100009758 /* StoreKit.framework */,
@@ -203,6 +213,7 @@
 		85E3C1D619DC666200DFDB05 = {
 			isa = PBXGroup;
 			children = (
+				85F642F91A1E7B57007B0629 /* Libraries */,
 				85838CCE1A0AA607003835B3 /* Frameworks */,
 				85E3C1E119DC666200DFDB05 /* SAPA-Native */,
 				85E3C1FA19DC666200DFDB05 /* SAPA-NativeTests */,
@@ -231,6 +242,7 @@
 				850A05DC19E5B688003CEBBF /* Main.storyboard */,
 				85E2E1AF19EC5BB0002C349C /* Settings */,
 				8583856919E5D5D20016E064 /* Model */,
+				85F642F61A1E6D55007B0629 /* Stats */,
 				854F597A19E7107800E24617 /* Profile */,
 				85E3C20F19DCEA9400DFDB05 /* Login */,
 				85C38ACA19EEEC3F008BA9FB /* Questions */,
@@ -238,9 +250,6 @@
 				85E3C1E219DC666200DFDB05 /* Supporting Files */,
 				85A6B43419E471130077E603 /* Constants.swift */,
 				85F8FBBC19EDC0E20062FD52 /* Functions.swift */,
-				85795B3A1A0183E500A6901B /* PhotoLibraryViewController.swift */,
-				85795B3E1A01900300A6901B /* CollectionViewController.swift */,
-				85795B481A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift */,
 			);
 			path = "SAPA-Native";
 			sourceTree = "<group>";
@@ -298,6 +307,21 @@
 				85E3C21319DCF2DE00DFDB05 /* SlideRightSegue.swift */,
 			);
 			name = Segues;
+			sourceTree = "<group>";
+		};
+		85F642F61A1E6D55007B0629 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				85F642F71A1E6D70007B0629 /* StatsViewController.swift */,
+			);
+			name = Stats;
+			sourceTree = "<group>";
+		};
+		85F642F91A1E7B57007B0629 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,16 +436,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E3C21419DCF2DE00DFDB05 /* SlideRightSegue.swift in Sources */,
-				85795B491A040B2300A6901B /* PhotoLibraryCollectionViewCell.swift in Sources */,
 				850A05E319E5BC7E003CEBBF /* MenuViewController.swift in Sources */,
-				85795B3B1A0183E500A6901B /* PhotoLibraryViewController.swift in Sources */,
 				8583856B19E5D5F70016E064 /* UserSettingsModel.swift in Sources */,
 				85F8FBBD19EDC0E20062FD52 /* Functions.swift in Sources */,
 				85E3C21A19DDD72500DFDB05 /* InitialDemographicsViewController.swift in Sources */,
+				85F642F81A1E6D70007B0629 /* StatsViewController.swift in Sources */,
 				85E3C21819DD41EC00DFDB05 /* SignUpScreenViewController.swift in Sources */,
 				85E3C20E19DCEA7200DFDB05 /* SlideLeftSegue.swift in Sources */,
 				854F597C19E7108F00E24617 /* ProfileViewController.swift in Sources */,
-				85795B3F1A01900300A6901B /* CollectionViewController.swift in Sources */,
 				85E3C1EA19DC666200DFDB05 /* LoginMainViewController.swift in Sources */,
 				85E3C1E519DC666200DFDB05 /* AppDelegate.swift in Sources */,
 				85E3C20A19DC9EA000DFDB05 /* LoginScreenViewController.swift in Sources */,
@@ -507,7 +529,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1990e7be-c07b-437e-82fc-d634792db91d";
+				PROVISIONING_PROFILE = "da7e3791-a616-4256-afcf-06e5f28b5ab8";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -543,7 +565,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "1990e7be-c07b-437e-82fc-d634792db91d";
+				PROVISIONING_PROFILE = "da7e3791-a616-4256-afcf-06e5f28b5ab8";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -558,11 +580,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/brianlai/Documents/FacebookSDK,
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1990e7be-c07b-437e-82fc-d634792db91d";
+				PROVISIONING_PROFILE = "da7e3791-a616-4256-afcf-06e5f28b5ab8";
 				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -577,11 +600,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/brianlai/Documents/FacebookSDK,
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				INFOPLIST_FILE = "SAPA-Native/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1990e7be-c07b-437e-82fc-d634792db91d";
+				PROVISIONING_PROFILE = "da7e3791-a616-4256-afcf-06e5f28b5ab8";
 				SWIFT_OBJC_BRIDGING_HEADER = "SAPA-Native-Bridging-Header.h";
 			};
 			name = Release;

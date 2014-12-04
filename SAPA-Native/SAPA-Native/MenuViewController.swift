@@ -412,6 +412,11 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
 
+    @IBAction func showStatsView() {
+        let statsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StatsViewController") as StatsViewController
+        self.navigationController?.pushViewController(statsViewController, animated: true)
+    }
+
     @IBAction func showSettingsView() {
         let settingsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as SettingsViewController
         settingsViewController.userSettings = userSettings
