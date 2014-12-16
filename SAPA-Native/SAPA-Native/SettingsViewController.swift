@@ -282,7 +282,7 @@ class SettingsViewController: UIViewController {
         let questions = String(notificationQuestions)
         questionsTextField.text = questions
 
-        //Attach datepicker to sobrietyTextField
+        //Attach datepicker to textFields
         datePicker = UIDatePicker()
         datePicker.datePickerMode = UIDatePickerMode.Time
         datePicker.backgroundColor = UIColor.whiteColor()

@@ -26,7 +26,7 @@ class QuestionsViewController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var quitButton: UIButton!
 
-    var questionArray: Array<String>!
+    var questionArray: Array<Int>!
 
     var currentQuestionIndex: Int!
 
@@ -42,7 +42,7 @@ class QuestionsViewController: UIViewController {
         viewWidth = screenWidth
         viewHeight = screenHeight
 
-        questionArray = shuffle(STATEQUESTIONS)
+        questionArray = shuffle(STATEQUESTIONNUMBERS)
         currentQuestionIndex = 0
 
         //Initialize elements
@@ -83,7 +83,7 @@ class QuestionsViewController: UIViewController {
         view.addConstraints([questionLabelCenterXConstraint, questionLabelTopConstraint, questionLabelHeightConstraint, questionLabelWidthConstraint])
         questionLabel.numberOfLines = 3
 
-        questionLabel.text = questionArray[currentQuestionIndex]
+        questionLabel.text = STATEQUESTIONS[questionArray[currentQuestionIndex]]! as String
 
         let minLabelLeadingConstant = CGFloat(0.0)
         let minLabelTopConstant = CGFloat(0.40669014084*viewHeight)
@@ -194,7 +194,7 @@ class QuestionsViewController: UIViewController {
         var numQuestions = userSettings["questionsPerNotification"] as Int
         
         var currentUserEmail = userSettings["email"] as String
-        var questionText = questionArray[currentQuestionIndex] as String
+        var questionText = STATEQUESTIONS[questionArray[currentQuestionIndex]]! as String
         var sliderValue = slider.value
         
         var questionType = "State"
@@ -205,9 +205,13 @@ class QuestionsViewController: UIViewController {
         userResponse["responseValue"] = sliderValue
         userResponse["questionType"] = questionType
         userResponse["timeZone"] = timeZone
+        userResponse["responseId"] = self.userSettings["responseId"]
+        userResponse["itemId"] = questionArray[currentQuestionIndex] as Int
         userResponse.saveInBackground()
         
         if currentQuestionIndex == (numQuestions - 1) {
+            self.userSettings.incrementKey("responseId");
+            self.userSettings.saveInBackground();
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         else {
@@ -234,7 +238,7 @@ class QuestionsViewController: UIViewController {
             UIView.setAnimationCurve(.EaseIn)
             UIView.setAnimationDuration(0.5)
             questionLabel.alpha = 0.0
-            questionLabel.text = questionArray[currentQuestionIndex]
+            questionLabel.text = STATEQUESTIONS[questionArray[currentQuestionIndex]]! as String
             questionLabel.alpha = 1.0
             UIView.commitAnimations()
         }
@@ -242,6 +246,8 @@ class QuestionsViewController: UIViewController {
     }
 
     @IBAction func quit() {
+        self.userSettings.incrementKey("responseId");
+        self.userSettings.saveInBackground();
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

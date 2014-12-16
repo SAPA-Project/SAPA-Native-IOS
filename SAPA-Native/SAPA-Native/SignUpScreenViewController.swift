@@ -273,6 +273,7 @@ class SignUpScreenViewController: UIViewController {
                     self.userSettings["notificationEndTime"] = NSDate(dateString: "10:00 PM")
                     self.userSettings["notificationFrequency"] = 3
                     self.userSettings["questionsPerNotification"] = 10
+                    self.userSettings["responseId"] = 0
                     self.userSettings.saveInBackground()
 
                     // var userDefaults = NSUserDefaults.standardUserDefaults()
